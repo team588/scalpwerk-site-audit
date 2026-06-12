@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website-Audit &ndash; SCALPWERK Regensburg</title>
+<style>
+  :root{
+    --primary:#172536; --accent:#f37a11; --accent2:#040b10;
+    --orange-red:#f25830; --green:#a0be47; --lavender:#d6ceff;
+    --gray-cool:#6f91a3; --gray-light:#b6c3c9;
+    --bg:#ffffff; --bg-alt:#eef2f5; --text:#172536; --text-muted:#5b6b76; --border:#dde4e9;
+    --success:#3f9d4f; --warning:#e0a008; --error:#d23b1f; --info:#3b82f6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter','Segoe UI',-apple-system,Roboto,sans-serif;color:var(--text);background:#e6e7ee;line-height:1.65;padding:40px 18px;}
+  .container{max-width:920px;margin:0 auto;}
+  h1,h2,h3,.up{font-family:'Arial Narrow','Inter',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-weight:800;}
+
+  /* HEADER */
+  .report-header{position:relative;overflow:hidden;text-align:left;padding:48px 40px;background:radial-gradient(120% 140% at 85% 0%,rgba(243,122,17,.35) 0%,rgba(243,122,17,0) 55%),linear-gradient(135deg,var(--primary) 0%,var(--accent2) 100%);color:#fff;border-radius:24px;margin-bottom:32px;box-shadow:0 24px 60px rgba(4,11,16,.35);}
+  .report-header .logo{height:30px;margin-bottom:26px;opacity:.95;}
+  .report-header h1{font-size:2.3em;line-height:1.05;margin-bottom:10px;}
+  .report-header .subtitle{font-size:1.08em;opacity:.82;max-width:640px;}
+  .report-header .badge{display:inline-block;background:var(--accent);color:#160b02;padding:6px 16px;border-radius:80px;font-size:.8em;font-weight:700;margin-top:18px;letter-spacing:.06em;text-transform:uppercase;}
+  .report-header .meta{margin-top:22px;display:flex;gap:28px;font-size:.86em;opacity:.8;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.16);padding-top:16px;}
+
+  /* SCORE HERO */
+  .score-wrap{display:flex;gap:20px;flex-wrap:wrap;align-items:stretch;margin-bottom:24px;}
+  .score-ring{flex:0 0 200px;background:linear-gradient(135deg,var(--primary),var(--accent2));border-radius:20px;color:#fff;padding:26px;text-align:center;display:flex;flex-direction:column;justify-content:center;box-shadow:0 16px 40px rgba(4,11,16,.25);}
+  .score-ring .num{font-size:3.4em;font-weight:800;line-height:1;}
+  .score-ring .num small{font-size:.34em;opacity:.7;}
+  .score-ring .lbl{font-size:.8em;opacity:.8;margin-top:8px;text-transform:uppercase;letter-spacing:.08em;}
+  .score-note{flex:1;min-width:260px;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:24px 26px;display:flex;flex-direction:column;justify-content:center;}
+  .score-note p{margin-bottom:8px;}
+  .score-note .big{font-size:1.05em;}
+
+  .section{background:var(--bg);border:1px solid var(--border);border-radius:18px;padding:30px;margin-bottom:22px;box-shadow:0 6px 22px rgba(23,37,54,.05);}
+  .section h2{font-size:1.3em;margin-bottom:16px;padding-bottom:12px;border-bottom:3px solid var(--accent);display:flex;align-items:center;gap:10px;}
+  .section h3{font-size:1em;margin:22px 0 10px;color:var(--accent);}
+  .section.highlight{border:2px solid var(--accent);background:linear-gradient(to bottom,#fff8f2,#ffffff);}
+  .section p,.section li{margin-bottom:7px;}
+  .section ul,.section ol{padding-left:22px;}
+  .lead{font-size:1.02em;}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0 4px;}
+  .kpi-card{background:var(--bg-alt);border-radius:14px;padding:18px;text-align:center;border:1px solid var(--border);}
+  .kpi-value{font-size:1.7em;font-weight:800;color:var(--primary);}
+  .kpi-value.bad{color:var(--error);} .kpi-value.warn{color:var(--warning);} .kpi-value.good{color:var(--success);}
+  .kpi-label{font-size:.78em;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:.04em;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9em;}
+  th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--border);vertical-align:top;}
+  th{background:var(--primary);color:#fff;font-weight:700;font-size:.76em;text-transform:uppercase;letter-spacing:.05em;}
+  th:first-child{border-top-left-radius:10px;} th:last-child{border-top-right-radius:10px;}
+  tr:hover td{background:var(--bg-alt);}
+
+  .sev{padding:2px 9px;border-radius:6px;font-weight:700;font-size:.74em;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;}
+  .sev-critical{background:#fde2dc;color:#9a2a14;} .sev-high{background:#ffe4cf;color:#9a4310;}
+  .sev-medium{background:#fdf0cd;color:#896407;} .sev-low{background:#e2e9ef;color:#3a4d5b;}
+  .status{display:inline-block;padding:3px 10px;border-radius:80px;font-size:.78em;font-weight:700;}
+  .st-fail{background:#fde2dc;color:#9a2a14;} .st-warn{background:#fdf0cd;color:#896407;} .st-ok{background:#dcefdf;color:#22622e;}
+
+  .matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:16px 0;}
+  .mx{border-radius:14px;padding:16px;color:#fff;text-align:center;}
+  .mx .n{font-size:2em;font-weight:800;line-height:1;}
+  .mx .t{font-size:.78em;text-transform:uppercase;letter-spacing:.05em;margin-top:6px;opacity:.95;}
+  .mx.c{background:linear-gradient(135deg,#d23b1f,#9a2a14);} .mx.h{background:linear-gradient(135deg,#f37a11,#c25406);}
+  .mx.m{background:linear-gradient(135deg,#e0a008,#a8780a);} .mx.l{background:linear-gradient(135deg,#6f91a3,#4d6675);}
+
+  .modbars .row{display:grid;grid-template-columns:200px 1fr 52px;gap:12px;align-items:center;margin:9px 0;font-size:.9em;}
+  .bar{background:var(--bg-alt);border-radius:8px;height:11px;overflow:hidden;}
+  .bar .fill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--orange-red));}
+  .bar .fill.good{background:linear-gradient(90deg,var(--green),#7fa53a);}
+  .bar .fill.bad{background:linear-gradient(90deg,#d23b1f,#9a2a14);}
+  .row .sc{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;}
+
+  .rec-card{border-radius:14px;padding:16px 18px;margin:11px 0;border:1px solid var(--border);background:var(--bg-alt);}
+  .rec-card.crit{background:#fdf2f0;border-color:#f3c4ba;}
+  .rec-card.warn{background:#fffaf0;border-color:#f6dca2;}
+  .rec-card.q{background:#f7f4ff;border-color:#d8cdf5;}
+  .rec-card strong{color:var(--primary);}
+  .tag{display:inline-block;background:var(--primary);color:#fff;font-size:.7em;font-weight:700;padding:2px 9px;border-radius:80px;margin-right:6px;text-transform:uppercase;letter-spacing:.04em;}
+  .phase{border-left:4px solid var(--accent);padding-left:16px;margin:18px 0;}
+  .phase h3{color:var(--primary);margin-top:0;}
+  .ok{color:var(--success);font-weight:700;} .no{color:var(--error);font-weight:700;}
+
+  .report-footer{text-align:center;padding:28px;color:var(--text-muted);font-size:.84em;margin-top:34px;}
+  .report-footer strong{color:var(--primary);}
+  @media print{body{padding:0;background:#fff;}.section,.report-header,.score-ring{box-shadow:none;}.section{break-inside:avoid;}}
+  @media(max-width:560px){.modbars .row{grid-template-columns:120px 1fr 44px;}.report-header{padding:34px 24px;}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="report-header">
+    <img class="logo" src="https://2penguins.eu/wp-content/uploads/2022/08/Logo-F.svg" alt="2Penguins">
+    <h1>Website-Audit<br>SCALPWERK Regensburg</h1>
+    <div class="subtitle">Technische, SEO- und Compliance-Analyse der Website haarpigmentierung-regensburg.de &ndash; mit priorisiertem Ma&szlig;nahmenplan.</div>
+    <span class="badge">Audit &middot; 9 Module</span>
+    <div class="meta">
+      <span>Kunde: SCALPWERK SMP Studio</span>
+      <span>Datum: 12.06.2026</span>
+      <span>Erstellt von: 2Penguins</span>
+    </div>
+  </div>
+
+  <!-- SCORE HERO -->
+  <div class="score-wrap">
+    <div class="score-ring">
+      <div class="num">54<small>/100</small></div>
+      <div class="lbl">Gesamt-Score</div>
+    </div>
+    <div class="score-note">
+      <p class="big"><strong>Solide Basis &ndash; mit zwei dringenden Baustellen.</strong></p>
+      <p>Technisch ist die Seite sauberer umgesetzt als der Branchendurchschnitt: HTTPS samt HSTS, starke Security-Header, vorgerenderter Inhalt, schneller Server und eine durchdachte Conversion-Strecke (2-Minuten-Quiz &rarr; kostenlose Fotoanalyse).</p>
+      <p>Zwei Bereiche erfordern jedoch <strong>sofortiges</strong> Handeln: der <strong>rechtliche Compliance-Status</strong> (Tracking ohne Einwilligung, unvollst&auml;ndiges Impressum, Google Fonts) und die <strong>vollst&auml;ndig fehlenden strukturierten Daten</strong>.</p>
+    </div>
+  </div>
+
+  <!-- MANAGEMENT SUMMARY -->
+  <div class="section highlight">
+    <h2>Management Summary</h2>
+    <p class="lead">Die Website verkauft sich gut: klare Botschaft, emotionale Ansprache und eine starke Quiz-Funnel-Mechanik. Das technische Fundament (Sicherheit, Performance-Server, Pre-Rendering) ist &uuml;berdurchschnittlich. <strong>Den Score nach unten ziehen vor allem zwei Dinge:</strong></p>
+    <ul>
+      <li><strong>Compliance (Note: durchgefallen):</strong> Google&nbsp;Analytics (GA4) und der Google Tag Manager laden <em>ohne</em> Cookie-Banner und <em>ohne</em> Consent Mode V2 &ndash; w&auml;hrend die Datenschutzerkl&auml;rung ausdr&uuml;cklich &bdquo;nur technisch notwendige Cookies&ldquo; behauptet. Dazu kommen ein unvollst&auml;ndiges Impressum und extern geladene Google Fonts. Das ist ein konkretes Abmahn-/Bu&szlig;geldrisiko.</li>
+      <li><strong>Strukturierte Daten (0&nbsp;von&nbsp;100):</strong> Es ist <em>kein einziges</em> JSON-LD-Schema vorhanden &ndash; kein LocalBusiness, kein Service, keine FAQ, keine Bewertungssterne. F&uuml;r ein lokales Studio in Regensburg ist das der g&uuml;nstigste ungenutzte Wachstumshebel.</li>
+    </ul>
+    <p><strong>Was wir von Ihnen brauchen:</strong></p>
+    <ul>
+      <li>Freigabe f&uuml;r die rechtlichen Sofortma&szlig;nahmen (Consent-Banner, Datenschutz-Update, Impressum-Daten: Rechtsform, verantwortliche Person, USt-IdNr.).</li>
+      <li>Zugang zu Google Tag Manager &amp; Google Analytics zur Korrektur der Tracking-Konfiguration.</li>
+      <li>Best&auml;tigung der Unternehmensdaten (Rechtsform, Mitarbeiterzahl/Umsatz) zur Pr&uuml;fung der BFSG-Pflicht.</li>
+    </ul>
+
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-value bad">FAIL</div><div class="kpi-label">Compliance 2026</div></div>
+      <div class="kpi-card"><div class="kpi-value bad">0</div><div class="kpi-label">JSON-LD Schemas</div></div>
+      <div class="kpi-card"><div class="kpi-value good">288&nbsp;ms</div><div class="kpi-label">TTFB (Server)</div></div>
+      <div class="kpi-card"><div class="kpi-value good">A&plus;</div><div class="kpi-label">Security-Header</div></div>
+      <div class="kpi-card"><div class="kpi-value warn">3/6</div><div class="kpi-label">Bilder ohne Alt</div></div>
+    </div>
+  </div>
+
+  <!-- SEVERITY MATRIX -->
+  <div class="section">
+    <h2>Severity-Matrix</h2>
+    <p>Verteilung der 25 dokumentierten Befunde nach Dringlichkeit:</p>
+    <div class="matrix">
+      <div class="mx c"><div class="n">6</div><div class="t">Kritisch</div></div>
+      <div class="mx h"><div class="n">6</div><div class="t">Hoch</div></div>
+      <div class="mx m"><div class="n">9</div><div class="t">Mittel</div></div>
+      <div class="mx l"><div class="n">4</div><div class="t">Niedrig</div></div>
+    </div>
+  </div>
+
+  <!-- MODULE SCORES -->
+  <div class="section">
+    <h2>Bewertung nach Modul</h2>
+    <div class="modbars">
+      <div class="row"><span>1 &middot; Technisches Fundament</span><span class="bar"><span class="fill good" style="width:70%"></span></span><span class="sc">7.0</span></div>
+      <div class="row"><span>2 &middot; Performance</span><span class="bar"><span class="fill" style="width:60%"></span></span><span class="sc">6.0</span></div>
+      <div class="row"><span>3 &middot; SEO</span><span class="bar"><span class="fill" style="width:55%"></span></span><span class="sc">5.5</span></div>
+      <div class="row"><span>4 &middot; Strukturierte Daten &amp; AI</span><span class="bar"><span class="fill bad" style="width:20%"></span></span><span class="sc">2.0</span></div>
+      <div class="row"><span>5 &middot; Analytics &amp; Tracking</span><span class="bar"><span class="fill" style="width:50%"></span></span><span class="sc">5.0</span></div>
+      <div class="row"><span>6 &middot; UX &amp; Conversion</span><span class="bar"><span class="fill good" style="width:75%"></span></span><span class="sc">7.5</span></div>
+      <div class="row"><span>7 &middot; Content</span><span class="bar"><span class="fill good" style="width:70%"></span></span><span class="sc">7.0</span></div>
+      <div class="row"><span>8 &middot; Compliance 2026</span><span class="bar"><span class="fill bad" style="width:30%"></span></span><span class="sc">3.0</span></div>
+    </div>
+    <p style="font-size:.82em;color:var(--text-muted);margin-top:12px;">Hinweis: PageSpeed Insights (Core Web Vitals) konnten w&auml;hrend des Audits nicht abgerufen werden (API-Limit). Die Performance-Bewertung beruht auf Server-Timings und Asset-Gr&ouml;&szlig;en und sollte mit einem Lighthouse-Lauf (API-Key) pr&auml;zisiert werden.</p>
+  </div>
+
+  <!-- FINDINGS -->
+  <div class="section">
+    <h2>Befunde im Detail</h2>
+    <table>
+      <thead><tr><th>#</th><th>Thema</th><th>Severity</th><th>Befund</th><th>Empfehlung</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Tracking ohne Einwilligung</td><td><span class="sev sev-critical">Kritisch</span></td><td>GA4 (<code>G-NQL61NCH0M</code>) &amp; GTM (<code>GTM-KW78RNF7</code>) laden ohne Consent-Banner und ohne Consent Mode&nbsp;V2 &rarr; Versto&szlig; gegen &sect;25 TTDSG.</td><td>CMP einbauen, Tags erst nach Einwilligung; Consent Mode&nbsp;V2.</td></tr>
+        <tr><td>2</td><td>Datenschutzerkl&auml;rung widerspr&uuml;chlich</td><td><span class="sev sev-critical">Kritisch</span></td><td>Erkl&auml;rt &bdquo;nur technisch notwendige Cookies&ldquo;, verschweigt aber Google Analytics/GTM.</td><td>GA4 &amp; GTM samt Rechtsgrundlagen und Hoster offenlegen.</td></tr>
+        <tr><td>3</td><td>Google Fonts extern</td><td><span class="sev sev-critical">Kritisch</span></td><td>Schriften von <code>fonts.gstatic.com</code> &rarr; IP-Transfer in die USA ohne Einwilligung (vgl. LG M&uuml;nchen I).</td><td>Fonts self-hosten.</td></tr>
+        <tr><td>4</td><td>Impressum unvollst&auml;ndig</td><td><span class="sev sev-critical">Kritisch</span></td><td>Keine Rechtsform, keine verantwortliche Person, USt-IdNr. &bdquo;wird erg&auml;nzt&ldquo;, keine OS-Plattform-Verlinkung (&sect;5 TMG).</td><td>Pflichtangaben vervollst&auml;ndigen.</td></tr>
+        <tr><td>5</td><td>Keine strukturierten Daten</td><td><span class="sev sev-critical">Kritisch</span></td><td>0 JSON-LD-Bl&ouml;cke: kein LocalBusiness, Service, FAQ, Review/AggregateRating.</td><td>Schema-Paket implementieren (siehe Ma&szlig;nahmenplan).</td></tr>
+        <tr><td>6</td><td>Barrierefreiheit (BFSG)</td><td><span class="sev sev-critical">Kritisch</span></td><td><code>user-scalable=no</code> verhindert Zoom (WCAG&nbsp;1.4.4); keine Barrierefreiheitserkl&auml;rung.</td><td>Zoom freigeben, Erkl&auml;rung erg&auml;nzen, BFSG-Pflicht pr&uuml;fen.</td></tr>
+        <tr><td>7</td><td>Social-Preview defekt</td><td><span class="sev sev-high">Hoch</span></td><td><code>og:image</code> (<code>/og-cover.jpg</code>) liefert 404; <code>og:url</code> &amp; Twitter-Tags leer.</td><td>OG-Bild erstellen, absolute Pfade, Twitter-Tags erg&auml;nzen.</td></tr>
+        <tr><td>8</td><td>Kein Canonical-Tag</td><td><span class="sev sev-high">Hoch</span></td><td>Auf keiner Seite ein <code>rel="canonical"</code>.</td><td>Self-Canonical auf allen Seiten setzen.</td></tr>
+        <tr><td>9</td><td>Sitemap ung&uuml;ltig</td><td><span class="sev sev-high">Hoch</span></td><td>Relative <code>&lt;loc&gt;/services&lt;/loc&gt;</code> (verst&ouml;&szlig;t gegen Sitemaps-Standard); unvollst&auml;ndig.</td><td>Absolute URLs, fehlende Seiten erg&auml;nzen.</td></tr>
+        <tr><td>10</td><td>Indexierte 404-Seite</td><td><span class="sev sev-high">Hoch</span></td><td><code>/muenchen</code> ist in Google indexiert, liefert am Server aber 404.</td><td>Seite wiederherstellen oder 301 weiterleiten.</td></tr>
+        <tr><td>11</td><td>Hero-Bilder als PNG</td><td><span class="sev sev-high">Hoch</span></td><td>Foto-Heroes als PNG (94&nbsp;+&nbsp;105&nbsp;KB) im LCP-Bereich.</td><td>In WebP/AVIF konvertieren (&minus;60&ndash;75&nbsp;%).</td></tr>
+        <tr><td>12</td><td>Keine Conversion-Events</td><td><span class="sev sev-high">Hoch</span></td><td>Quiz/Formular-Abschl&uuml;sse und Tel/WhatsApp-Klicks nicht als Events erfasst.</td><td>Events <code>generate_lead</code>/<code>form_submit</code> + Google-Ads-Import.</td></tr>
+        <tr><td>13</td><td>Fehlende Alt-Texte</td><td><span class="sev sev-medium">Mittel</span></td><td>3 von 6 Bildern ohne Alt-Attribut.</td><td>Beschreibende Alt-Texte erg&auml;nzen.</td></tr>
+        <tr><td>14</td><td>Text-Verklebung</td><td><span class="sev sev-medium">Mittel</span></td><td>Fehlende Leerzeichen: &bdquo;Haar.Finden&ldquo;, &bdquo;aufGoogle Maps&ldquo;.</td><td>Span-Abst&auml;nde im Frontend korrigieren.</td></tr>
+        <tr><td>15</td><td>JS-/CSS-Gewicht</td><td><span class="sev sev-medium">Mittel</span></td><td>Haupt-Bundle 369&nbsp;KB + framer-motion 124&nbsp;KB; CSS 131&nbsp;KB.</td><td>Code-Splitting/Lazy-Load, CSS-Purge &rarr; bessere INP.</td></tr>
+        <tr><td>16</td><td>Duplizierte Rechtsseiten</td><td><span class="sev sev-medium">Mittel</span></td><td><code>/privacy</code> + <code>/terms</code> (EN-Template) neben <code>/datenschutz</code> + <code>/impressum</code>.</td><td>Entfernen oder auf noindex.</td></tr>
+        <tr><td>17</td><td>Keine Preisindikation</td><td><span class="sev sev-medium">Mittel</span></td><td>Durchg&auml;ngig &bdquo;individuell&ldquo; ohne Ab-Preis.</td><td>&bdquo;ab X&nbsp;&euro;&ldquo; zur Lead-Qualifizierung erw&auml;gen.</td></tr>
+        <tr><td>18</td><td>DSGVO-Einwilligung Foto-Formular</td><td><span class="sev sev-medium">Mittel</span></td><td>Biometrie/Fotos (Art.&nbsp;9 DSGVO) &ndash; expliziter Consent-Checkbox nicht best&auml;tigt.</td><td>Aktive Einwilligungs-Checkbox im Formular.</td></tr>
+        <tr><td>19</td><td>Tilda-Altbestand im Index</td><td><span class="sev sev-medium">Mittel</span></td><td>Veraltete <code>/tpost/&hellip;</code>-URLs aus einer fr&uuml;heren Tilda-Version sind weiterhin im Google-Index, liefern auf dem neuen React-Stack aber 404.</td><td>301-Weiterleitungen der Alt-URLs auf passende neue Seiten einrichten.</td></tr>
+        <tr><td>20</td><td>Kein <code>llms.txt</code></td><td><span class="sev sev-medium">Mittel</span></td><td>Keine steuerbare Kontextdatei f&uuml;r AI-Suchmaschinen (404).</td><td><code>llms.txt</code> anlegen.</td></tr>
+        <tr><td>21</td><td>HSTS ohne Preload</td><td><span class="sev sev-low">Niedrig</span></td><td>HSTS aktiv, aber ohne <code>preload</code>-Direktive.</td><td>Optional <code>preload</code> erg&auml;nzen.</td></tr>
+        <tr><td>22</td><td>Sitemap-Pfad in robots.txt</td><td><span class="sev sev-low">Niedrig</span></td><td>Relativer Verweis <code>Sitemap: /sitemap.xml</code>.</td><td>Absolute URL angeben.</td></tr>
+        <tr><td>23</td><td>Datum Datenschutz</td><td><span class="sev sev-low">Niedrig</span></td><td>Stand 01.06.2026 &ndash; nach Tracking-Update aktualisieren.</td><td>Bei &Auml;nderung neu datieren.</td></tr>
+        <tr><td>24</td><td>E-E-A-T-Signale</td><td><span class="sev sev-low">Niedrig</span></td><td>Keine Experten-/Team-Seiten, keine <code>sameAs</code>-Verkn&uuml;pfungen.</td><td>Profilseite + Social-Verkn&uuml;pfungen.</td></tr>
+        <tr><td>25</td><td>Kein CMS / Redaktionssystem</td><td><span class="sev sev-medium">Mittel</span></td><td>Inhalte sind im Code hardcodiert (TanStack&nbsp;Start, React/Vite) &ndash; kein CMS, kein Editor, keine Admin-Oberfl&auml;che. Pflege nur per Code-&Auml;nderung &amp; Deploy durch eine:n Entwickler:in.</td><td>Bei h&auml;ufigen Inhalts&auml;nderungen Headless-CMS oder Editor-Schicht erw&auml;gen.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- WHAT'S GOOD -->
+  <div class="section">
+    <h2>Das funktioniert bereits gut</h2>
+    <ul>
+      <li><span class="ok">&check;</span> <strong>Sicherheit:</strong> CSP, HSTS, X-Frame-Options DENY, X-Content-Type-Options, Referrer- &amp; Permissions-Policy &ndash; vorbildlich.</li>
+      <li><span class="ok">&check;</span> <strong>Pre-Rendering:</strong> Inhalt steht im HTML &rarr; unabh&auml;ngig vom JS-Rendering indexierbar.</li>
+      <li><span class="ok">&check;</span> <strong>Server-Performance:</strong> TTFB 288&nbsp;ms, sauberes 404-Handling.</li>
+      <li><span class="ok">&check;</span> <strong>Conversion-Logik:</strong> 2-Minuten-Quiz &rarr; kostenlose Fotoanalyse, klare CTAs, WhatsApp/Telefon, Trust-Bausteine (REACH-Pigmente, sterile Module, Google-Bewertungen).</li>
+      <li><span class="ok">&check;</span> <strong>Content:</strong> inhaltsreiche Leistungsseite (~800&ndash;1000 W&ouml;rter, 6 Leistungen, 5-Schritt-Ablauf).</li>
+    </ul>
+  </div>
+
+  <!-- ACTION PLAN -->
+  <div class="section">
+    <h2>Empfehlungen zur Optimierung</h2>
+
+    <div class="phase">
+      <h3>Kritisch &ndash; zuerst beheben (Rechtsrisiko)</h3>
+      <div class="rec-card crit"><span class="tag">Recht</span><strong>Consent-Management + Consent Mode V2</strong> &ndash; Cookie-Banner einbauen, GA4/GTM erst nach Einwilligung ausl&ouml;sen.</div>
+      <div class="rec-card crit"><span class="tag">Recht</span><strong>Datenschutzerkl&auml;rung aktualisieren</strong> &ndash; GA4 + GTM, Rechtsgrundlagen und Hoster offenlegen.</div>
+      <div class="rec-card crit"><span class="tag">Recht</span><strong>Google Fonts self-hosten</strong> &amp; <strong>Impressum vervollst&auml;ndigen</strong> (Rechtsform, verantwortliche Person, USt-IdNr., OS-Link).</div>
+      <div class="rec-card crit"><span class="tag">A11y</span><strong>Zoom freigeben</strong> (<code>user-scalable=no</code> entfernen) und <strong>Barrierefreiheitserkl&auml;rung</strong> erg&auml;nzen.</div>
+    </div>
+
+    <div class="phase">
+      <h3>Hohe Priorit&auml;t &ndash; Quick Wins</h3>
+      <div class="rec-card warn"><span class="tag">SEO</span><strong>OG-Bild</strong> erstellen (aktuell 404) &middot; <strong>Canonical</strong>-Tags &middot; <strong>Sitemap</strong> reparieren (absolute URLs, fehlende Seiten, Duplikate entfernen).</div>
+      <div class="rec-card warn"><span class="tag">SEO</span><strong>404 auf <code>/muenchen</code></strong> beheben (Wiederherstellung oder 301).</div>
+      <div class="rec-card warn"><span class="tag">UX</span><strong>Alt-Texte</strong> erg&auml;nzen, <strong>Text-Verklebung</strong> beheben, Hero-Bilder in <strong>WebP/AVIF</strong>.</div>
+    </div>
+
+    <div class="phase">
+      <h3>Mittlere Priorit&auml;t</h3>
+      <div class="rec-card"><span class="tag">Schema</span><strong>JSON-LD</strong>: LocalBusiness + Service&times;6 + FAQPage + AggregateRating/Review + BreadcrumbList &rarr; Rich Results &amp; lokale Sichtbarkeit.</div>
+      <div class="rec-card"><span class="tag">Tracking</span><strong>Conversion-Events</strong> (Quiz, Formular, Tel/WhatsApp) in GTM + Google-Ads-Import.</div>
+      <div class="rec-card"><span class="tag">Perf</span><strong>Code-Splitting/Lazy-Load</strong> + CSS-Purge; Lighthouse mit API-Key f&uuml;r exakte Core Web Vitals.</div>
+    </div>
+
+    <div class="phase">
+      <h3>Weiterf&uuml;hrend</h3>
+      <div class="rec-card"><span class="tag">Vision</span>Blog in die Domain-Architektur/Sitemap integrieren &middot; <code>llms.txt</code> f&uuml;r AI-Suche &middot; Experten-/Team-Seiten (E-E-A-T) &middot; lokale Citations (GBP, GelbeSeiten, ProvenExpert) mit einheitlichem NAP.</div>
+    </div>
+  </div>
+
+  <!-- OPEN QUESTIONS -->
+  <div class="section">
+    <h2>Offene Punkte &amp; Annahmen</h2>
+    <div class="rec-card q"><strong>BFSG-Pflicht:</strong> Die Anwendbarkeit des Barrierefreiheitsst&auml;rkungsgesetzes h&auml;ngt von Umsatz/Mitarbeiterzahl ab &ndash; bitte rechtlich pr&uuml;fen (Bu&szlig;geld bis 100.000&nbsp;&euro;).</div>
+    <div class="rec-card q"><strong>Performance:</strong> PageSpeed/CrUX-Daten lagen wegen API-Limit nicht vor &ndash; ein Lighthouse-Lauf mit API-Key liefert belastbare Core-Web-Vitals.</div>
+    <div class="rec-card q"><strong>SEMrush:</strong> Es wurde keine Traffic-/Backlink-Baseline erhoben (Standalone-Audit). F&uuml;r eine Strategiephase empfohlen.</div>
+    <div class="rec-card q"><strong>Google Business Profile:</strong> NAP-Konsistenz wurde nicht verifiziert &ndash; separate Pr&uuml;fung empfohlen.</div>
+  </div>
+
+  <div class="report-footer">
+    <p><strong>Website-Audit SCALPWERK Regensburg</strong> &mdash; erstellt von <strong>2Penguins</strong> f&uuml;r <strong>SCALPWERK SMP Studio</strong></p>
+    <p>Berichtsdatum: 12.06.2026 &middot; Gesamt-Score 54/100</p>
+    <p style="margin-top:8px;opacity:.6;">Vertraulich &ndash; ausschlie&szlig;lich f&uuml;r den Adressaten bestimmt.</p>
+  </div>
+
+</div>
+</body>
+</html>
