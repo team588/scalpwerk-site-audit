@@ -164,6 +164,35 @@
     <div class="rec-card"><span class="tag">Priorit&auml;t 0</span><strong>301-Weiterleitungen</strong> aller Alt-URLs auf passende neue Seiten + <strong>Sitemap reparieren</strong> (absolute URLs) &ndash; bevor weitere Content- oder Design-Arbeit Sinn ergibt.</div>
   </div>
 
+  <!-- INDEXIERBARKEIT -->
+  <div class="section">
+    <h2>Indexierbarkeit &ndash; ist der neue Stack suchmaschinentauglich?</h2>
+    <div class="rec-card"><strong>Verdikt: Ja &ndash; architektonisch ist die Seite normal indexierbar.</strong> Aktuell wird die Indexierung nur durch behebbare Konfigurationsfehler ausgebremst, nicht durch die Technik.</div>
+
+    <h3>Entscheidend: Inhalte werden serverseitig gerendert (Pre-Render/SSG)</h3>
+    <p>Pr&uuml;fung des Roh-HTML <strong>ohne JavaScript-Ausf&uuml;hrung</strong> &ndash; Googlebot bekommt den vollst&auml;ndigen Inhalt direkt aus der Server-Antwort:</p>
+    <table>
+      <thead><tr><th>Seite</th><th>HTML</th><th>&lt;title&gt; (eindeutig)</th><th>H1</th><th>Inhalt im Quelltext</th></tr></thead>
+      <tbody>
+        <tr><td><code>/</code></td><td>66&nbsp;KB</td><td>Kostenloser Test &ndash; SCALPWERK Regensburg</td><td>1</td><td><span class="status st-ok">vorhanden</span></td></tr>
+        <tr><td><code>/services</code></td><td>40&nbsp;KB</td><td>Leistungen und Preise &ndash; SCALPWERK SMP</td><td>1</td><td><span class="status st-ok">vorhanden</span></td></tr>
+      </tbody>
+    </table>
+    <p>Das ist <strong>kein leerer SPA-Shell</strong> &ndash; es gibt kein grunds&auml;tzliches JavaScript-SEO-Problem. Zus&auml;tzlich positiv: <code>robots.txt</code> erlaubt alles, keine <code>noindex</code>-Sperre, korrekte HTTP-Statuscodes, crawlbarer Navigationslink auf <code>/services</code>.</p>
+
+    <h3>Was die Indexierung aktuell ausbremst (alles per Konfiguration l&ouml;sbar)</h3>
+    <ul>
+      <li><span class="no">&times;</span> <strong>Sitemap ung&uuml;ltig:</strong> relative <code>&lt;loc&gt;/services&lt;/loc&gt;</code> &rarr; Google ignoriert sie wahrscheinlich. &rarr; absolute URLs.</li>
+      <li><span class="no">&times;</span> <strong>Kein <code>rel="canonical"</code></strong> (weder auf <code>/</code> noch <code>/services</code>).</li>
+      <li><span class="no">&times;</span> <strong><code>/quiz</code> ist ein 307-Redirect</strong> auf die Startseite &ndash; steht aber in der Sitemap (Widerspruch). &rarr; entfernen oder echte Seite.</li>
+      <li><span class="no">&times;</span> <strong>Alt-URLs (Tilda) liefern 404 ohne 301</strong> &rarr; verlorener Crawl-/Autorit&auml;ts-Transfer.</li>
+      <li><span class="status st-warn">Neu</span> Die Seite ist erst <strong>1 Tag alt</strong> &ndash; &bdquo;URL unknown to Google&ldquo; f&uuml;r <code>/services</code> ist gr&ouml;&szlig;tenteils Neuheit + die kaputte Sitemap. Nach Fix braucht Google nur einen Re-Crawl.</li>
+    </ul>
+
+    <div class="rec-card"><strong>Fazit:</strong> Nach vier Fixes (valide Sitemap mit absoluten URLs &rarr; <code>/quiz</code>-Redirect aus der Sitemap nehmen &rarr; Self-Canonical auf alle Seiten &rarr; 301 von den Alt-URLs) indexiert die Seite normal &ndash; es braucht nur einen Re-Crawl (Tage bis wenige Wochen).</div>
+    <p style="font-size:.9em;color:var(--text-muted)"><strong>Ehrliche Einordnung:</strong> Die Zahl indexierbarer <em>Inhaltsseiten</em> ist klein (im Kern <code>/</code> und <code>/services</code>; der Rest ist Funnel/Redirect). F&uuml;r ein lokales Studio ist das ein funktionierendes Minimum; f&uuml;r organisches Wachstum w&auml;ren FAQ-/Standort-/Blog-Seiten + Structured Data sinnvoll. Da das Gesch&auml;ft jedoch zu ~90&nbsp;% &uuml;ber Google Ads l&auml;uft, gilt: zuerst Tracking/Conversions &amp; 301 fixen, organische SEO ist zweite Priorit&auml;t.</p>
+  </div>
+
   <!-- LIVE TAG AUDIT -->
   <div class="section">
     <h2>Live-Tag-Audit (GTM, Consent &amp; Netzwerk)</h2>
