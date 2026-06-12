@@ -124,7 +124,7 @@
     <h2>Management Summary</h2>
     <p class="lead">Die Website verkauft sich gut: klare Botschaft, emotionale Ansprache und eine starke Quiz-Funnel-Mechanik. Das technische Fundament (Sicherheit, Performance-Server, Pre-Rendering) ist &uuml;berdurchschnittlich. <strong>Den Score nach unten ziehen vor allem zwei Dinge:</strong></p>
     <ul>
-      <li><strong>Compliance (Note: durchgefallen):</strong> Google&nbsp;Analytics (GA4) und der Google Tag Manager laden <em>ohne</em> Cookie-Banner und <em>ohne</em> Consent Mode V2 &ndash; w&auml;hrend die Datenschutzerkl&auml;rung ausdr&uuml;cklich &bdquo;nur technisch notwendige Cookies&ldquo; behauptet. Dazu kommen ein unvollst&auml;ndiges Impressum und extern geladene Google Fonts. Das ist ein konkretes Abmahn-/Bu&szlig;geldrisiko.</li>
+      <li><strong>Compliance (Note: durchgefallen):</strong> Das Tracking ist technisch aufw&auml;ndig aufgesetzt (GA4, Consent Mode V2 via CookieYes, Google Ads, Meta CAPI, server-side Stape) &ndash; aber <em>fehlkonfiguriert</em>: Der eigene CSP blockiert den CookieYes-Banner, sodass Besucher <em>keine</em> Cookie-Abfrage sehen, w&auml;hrend ein fest eingebundenes <code>gtag.js</code> GA4-Cookies bereits <em>ohne</em> Einwilligung setzt. Zudem verschweigt die Datenschutzerkl&auml;rung s&auml;mtliche Tools. Konkretes Abmahn-/Bu&szlig;geldrisiko (&sect;25 TTDSG / DSGVO).</li>
       <li><strong>Strukturierte Daten (0&nbsp;von&nbsp;100):</strong> Es ist <em>kein einziges</em> JSON-LD-Schema vorhanden &ndash; kein LocalBusiness, kein Service, keine FAQ, keine Bewertungssterne. F&uuml;r ein lokales Studio in Regensburg ist das der g&uuml;nstigste ungenutzte Wachstumshebel.</li>
     </ul>
     <p><strong>Was wir von Ihnen brauchen:</strong></p>
@@ -143,12 +143,55 @@
     </div>
   </div>
 
+  <!-- GSC MIGRATION -->
+  <div class="section">
+    <h2>SEO-Migrations-Audit (Google Search Console)</h2>
+    <p>Daten aus der verifizierten GSC-Property (28 Tage): <strong>26 Klicks &middot; 1.040 Impressionen &middot; &Oslash;-Position 12,7</strong>. Die Analyse zeigt das dringendste Problem der gesamten Pr&uuml;fung:</p>
+    <div class="rec-card crit"><strong>Die Migration von der alten Tilda-Seite auf den neuen React-Stack erfolgte ohne 301-Weiterleitungen.</strong> Die alten, weiterhin indexierten URLs erzeugen rund <strong>80&nbsp;% aller Impressionen &ndash; liefern aber 404.</strong> Nutzer klicken aus Google und landen auf einer Fehlerseite. Leads gehen t&auml;glich verloren.</div>
+    <table>
+      <thead><tr><th>Indexierte Seite</th><th>Impressionen (28T)</th><th>Klicks</th><th>Realer Status</th></tr></thead>
+      <tbody>
+        <tr><td><code>/tpost/&hellip;was-ist-smp</code> (Tilda-Blog)</td><td>401</td><td>1</td><td><span class="status st-fail">404</span></td></tr>
+        <tr><td><code>/muenchen</code></td><td>245</td><td>4</td><td><span class="status st-fail">404</span></td></tr>
+        <tr><td><code>/ingolstadt</code></td><td>173</td><td>8</td><td><span class="status st-fail">404</span></td></tr>
+        <tr><td><code>/promo</code></td><td>13</td><td>0</td><td><span class="status st-fail">404</span></td></tr>
+        <tr><td><code>/</code> (neue Startseite)</td><td>400</td><td>13</td><td><span class="status st-ok">200</span></td></tr>
+        <tr><td><code>/services</code> &amp; <code>/quiz</code> (neu)</td><td>&mdash;</td><td>&mdash;</td><td><span class="status st-warn">nicht indexiert</span></td></tr>
+      </tbody>
+    </table>
+    <p>Die neuen Money-Pages <code>/services</code> und <code>/quiz</code> sind Google <strong>unbekannt</strong> (&bdquo;URL is unknown to Google&ldquo;) &ndash; Folge der ung&uuml;ltigen Sitemap (relative URLs) und fehlender 301-Verkn&uuml;pfung.</p>
+    <div class="rec-card"><span class="tag">Priorit&auml;t 0</span><strong>301-Weiterleitungen</strong> aller Alt-URLs auf passende neue Seiten + <strong>Sitemap reparieren</strong> (absolute URLs) &ndash; bevor weitere Content- oder Design-Arbeit Sinn ergibt.</div>
+  </div>
+
+  <!-- LIVE TAG AUDIT -->
+  <div class="section">
+    <h2>Live-Tag-Audit (GTM, Consent &amp; Netzwerk)</h2>
+    <p>Das Auslesen des GTM-Setups (Konto <code>6310751268</code>) und ein Netzwerk-Mitschnitt im Browser ergaben: Das Tracking ist <strong>professionell konzipiert</strong> &ndash; aber durch den CSP teilweise <strong>au&szlig;er Funktion</strong>.</p>
+    <h3>Tats&auml;chliches Setup</h3>
+    <ul>
+      <li><strong>GA4</strong> (<code>G-NQL61NCH0M</code>) + <strong>Consent Mode V2</strong> via <strong>CookieYes</strong> (Default: denied).</li>
+      <li><strong>Google Ads</strong> (<code>AW-17524084232</code>): 3 Conversions (Test starten, Quiz-Abschluss, WhatsApp) + Enhanced Conversions.</li>
+      <li><strong>Meta Conversions API</strong> (Dataset <code>1568772624300616</code>) &uuml;ber einen <strong>server-side Container (Stape, EU)</strong> &ndash; zweiter Container <code>GTM-M377NKN9</code>.</li>
+    </ul>
+    <h3>Kritische Fehlkonfiguration</h3>
+    <div class="rec-card crit"><strong>Der CSP blockiert das eigene Consent-Tool und das Conversion-Tracking.</strong> Im Netzwerk-Mitschnitt scheitern (FAILED &ndash; csp/ORB):
+      <ul style="margin-top:6px">
+        <li><code>cdn-cookieyes.com</code> &rarr; <strong>der Cookie-Banner wird Besuchern nie angezeigt</strong>;</li>
+        <li><code>connect.facebook.net</code> &rarr; Meta-Pixel tot;</li>
+        <li><code>pagead2.googlesyndication.com</code> / <code>google.com/ccm</code> &rarr; <strong>Google-Ads-Conversions werden nicht gemessen</strong>;</li>
+        <li><code>capi-automation&hellip;</code> &rarr; Stape-CAPI-Datenaufbereitung blockiert.</li>
+      </ul>
+    </div>
+    <div class="rec-card crit"><strong>GA4 trackt ohne Einwilligung.</strong> Ein fest im <code>&lt;head&gt;</code> eingebundenes <code>gtag.js</code> setzt die Cookies <code>_ga</code>, <code>_ga_NQL61NCH0M</code>, <code>_gcl_au</code> sofort beim Laden &ndash; am Consent Mode vorbei (best&auml;tigt: <code>page_view</code> gesendet, Cookies gesetzt, kein Banner).</div>
+    <p><strong>Netto:</strong> funktionsf&auml;hig ist nur die GA4-Basisanalyse. Der Consent-Banner ist unsichtbar, Google-Ads- &amp; Meta-Conversions feuern nicht &ndash; das Werbebudget l&auml;uft ohne Messung. <strong>L&ouml;sung:</strong> CSP um die ben&ouml;tigten Domains erweitern (CookieYes, Facebook, pagead2/google-ccm, Stape) und das hardcodierte gtag entfernen bzw. dem Consent Mode unterstellen.</p>
+  </div>
+
   <!-- SEVERITY MATRIX -->
   <div class="section">
     <h2>Severity-Matrix</h2>
-    <p>Verteilung der 25 dokumentierten Befunde nach Dringlichkeit:</p>
+    <p>Verteilung der 27 dokumentierten Befunde nach Dringlichkeit:</p>
     <div class="matrix">
-      <div class="mx c"><div class="n">6</div><div class="t">Kritisch</div></div>
+      <div class="mx c"><div class="n">8</div><div class="t">Kritisch</div></div>
       <div class="mx h"><div class="n">6</div><div class="t">Hoch</div></div>
       <div class="mx m"><div class="n">9</div><div class="t">Mittel</div></div>
       <div class="mx l"><div class="n">4</div><div class="t">Niedrig</div></div>
@@ -177,7 +220,7 @@
     <table>
       <thead><tr><th>#</th><th>Thema</th><th>Severity</th><th>Befund</th><th>Empfehlung</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>Tracking ohne Einwilligung</td><td><span class="sev sev-critical">Kritisch</span></td><td>GA4 (<code>G-NQL61NCH0M</code>) &amp; GTM (<code>GTM-KW78RNF7</code>) laden ohne Consent-Banner und ohne Consent Mode&nbsp;V2 &rarr; Versto&szlig; gegen &sect;25 TTDSG.</td><td>CMP einbauen, Tags erst nach Einwilligung; Consent Mode&nbsp;V2.</td></tr>
+        <tr><td>1</td><td>Tracking ohne Einwilligung</td><td><span class="sev sev-critical">Kritisch</span></td><td>Consent Mode V2 (CookieYes) ist in GTM konfiguriert, doch der CSP blockiert das CookieYes-Skript &rarr; <strong>Banner wird nie angezeigt</strong>. Zugleich setzt ein fest im <code>&lt;head&gt;</code> eingebundenes <code>gtag.js</code> (<code>G-NQL61NCH0M</code>) GA4-Cookies ohne Einwilligung. Versto&szlig; &sect;25 TTDSG.</td><td><code>cdn-cookieyes.com</code> im CSP freigeben; hardcodiertes gtag entfernen bzw. dem Consent Mode unterstellen.</td></tr>
         <tr><td>2</td><td>Datenschutzerkl&auml;rung widerspr&uuml;chlich</td><td><span class="sev sev-critical">Kritisch</span></td><td>Erkl&auml;rt &bdquo;nur technisch notwendige Cookies&ldquo;, verschweigt aber Google Analytics/GTM.</td><td>GA4 &amp; GTM samt Rechtsgrundlagen und Hoster offenlegen.</td></tr>
         <tr><td>3</td><td>Google Fonts extern</td><td><span class="sev sev-critical">Kritisch</span></td><td>Schriften von <code>fonts.gstatic.com</code> &rarr; IP-Transfer in die USA ohne Einwilligung (vgl. LG M&uuml;nchen I).</td><td>Fonts self-hosten.</td></tr>
         <tr><td>4</td><td>Impressum unvollst&auml;ndig</td><td><span class="sev sev-critical">Kritisch</span></td><td>Keine Rechtsform, keine vertretungsberechtigte Person, USt-IdNr. &bdquo;wird erg&auml;nzt&ldquo; (&sect;5 DDG).</td><td>Pflichtangaben vervollst&auml;ndigen.</td></tr>
@@ -188,7 +231,7 @@
         <tr><td>9</td><td>Sitemap ung&uuml;ltig</td><td><span class="sev sev-high">Hoch</span></td><td>Relative <code>&lt;loc&gt;/services&lt;/loc&gt;</code> (verst&ouml;&szlig;t gegen Sitemaps-Standard); unvollst&auml;ndig.</td><td>Absolute URLs, fehlende Seiten erg&auml;nzen.</td></tr>
         <tr><td>10</td><td>Indexierte 404-Seite</td><td><span class="sev sev-high">Hoch</span></td><td><code>/muenchen</code> ist in Google indexiert, liefert am Server aber 404.</td><td>Seite wiederherstellen oder 301 weiterleiten.</td></tr>
         <tr><td>11</td><td>Hero-Bilder als PNG</td><td><span class="sev sev-high">Hoch</span></td><td>Foto-Heroes als PNG (94&nbsp;+&nbsp;105&nbsp;KB) im LCP-Bereich.</td><td>In WebP/AVIF konvertieren (&minus;60&ndash;75&nbsp;%).</td></tr>
-        <tr><td>12</td><td>Keine Conversion-Events</td><td><span class="sev sev-high">Hoch</span></td><td>Quiz/Formular-Abschl&uuml;sse und Tel/WhatsApp-Klicks nicht als Events erfasst.</td><td>Events <code>generate_lead</code>/<code>form_submit</code> + Google-Ads-Import.</td></tr>
+        <tr><td>12</td><td>Conversion-Tracking durch CSP blockiert</td><td><span class="sev sev-high">Hoch</span></td><td>Google-Ads-Conversions (<code>AW-17524084232</code>: Test starten, Quiz, WhatsApp) + Meta Pixel/CAPI sind in GTM korrekt eingerichtet, werden aber vom CSP blockiert (<code>pagead2</code>/<code>google.com/ccm</code>, <code>connect.facebook.net</code> = FAILED) &rarr; <strong>Conversions werden nicht gemessen</strong>.</td><td>Conversion-Domains im CSP freigeben; Messung verifizieren.</td></tr>
         <tr><td>13</td><td>Fehlende Alt-Texte</td><td><span class="sev sev-medium">Mittel</span></td><td>3 von 6 Bildern ohne Alt-Attribut.</td><td>Beschreibende Alt-Texte erg&auml;nzen.</td></tr>
         <tr><td>14</td><td>Text-Verklebung</td><td><span class="sev sev-medium">Mittel</span></td><td>Fehlende Leerzeichen: &bdquo;Haar.Finden&ldquo;, &bdquo;aufGoogle Maps&ldquo;.</td><td>Span-Abst&auml;nde im Frontend korrigieren.</td></tr>
         <tr><td>15</td><td>JS-/CSS-Gewicht</td><td><span class="sev sev-medium">Mittel</span></td><td>Haupt-Bundle 369&nbsp;KB + framer-motion 124&nbsp;KB; CSS 131&nbsp;KB.</td><td>Code-Splitting/Lazy-Load, CSS-Purge &rarr; bessere INP.</td></tr>
@@ -210,7 +253,7 @@
   <div class="section">
     <h2>Das funktioniert bereits gut</h2>
     <ul>
-      <li><span class="ok">&check;</span> <strong>Sicherheit:</strong> CSP, HSTS, X-Frame-Options DENY, X-Content-Type-Options, Referrer- &amp; Permissions-Policy &ndash; vorbildlich.</li>
+      <li><span class="ok">&check;</span> <strong>Sicherheit (mit Einschr&auml;nkung):</strong> HSTS, X-Frame-Options DENY, X-Content-Type-Options, Referrer- &amp; Permissions-Policy sind vorbildlich. <strong>Aber:</strong> der CSP ist zu eng und blockiert das eigene Consent-Tool und Conversion-Tracking (siehe Live-Tag-Audit).</li>
       <li><span class="ok">&check;</span> <strong>Pre-Rendering:</strong> Inhalt steht im HTML &rarr; unabh&auml;ngig vom JS-Rendering indexierbar.</li>
       <li><span class="ok">&check;</span> <strong>Server-Performance:</strong> TTFB 288&nbsp;ms, sauberes 404-Handling.</li>
       <li><span class="ok">&check;</span> <strong>Conversion-Logik:</strong> 2-Minuten-Quiz &rarr; kostenlose Fotoanalyse, klare CTAs, WhatsApp/Telefon, Trust-Bausteine (REACH-Pigmente, sterile Module, Google-Bewertungen).</li>
