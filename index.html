@@ -85,6 +85,33 @@
   .phase h3{color:var(--primary);margin-top:0;}
   .ok{color:var(--success);font-weight:700;} .no{color:var(--error);font-weight:700;}
 
+  /* STATUS UPDATE (13.06) */
+  .hbadge-ok{display:inline-block;background:var(--green);color:#15240a;padding:6px 16px;border-radius:80px;font-size:.8em;font-weight:700;margin-top:18px;margin-left:8px;letter-spacing:.05em;text-transform:uppercase;}
+  .section.statusbox{border:2px solid var(--green);background:linear-gradient(to bottom,#f5fae9,#ffffff);}
+  .section.statusbox h2{border-bottom-color:var(--green);}
+
+  .timeline{margin:6px 0 22px;}
+  .tl-item{position:relative;padding-left:26px;padding-bottom:16px;border-left:2px solid var(--border);margin-left:6px;}
+  .tl-item:last-child{border-left:2px solid transparent;padding-bottom:0;}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--gray-cool);border:2px solid #fff;box-shadow:0 0 0 1px var(--border);}
+  .tl-item.done::before{background:var(--green);}
+  .tl-item .tl-date{font-weight:800;font-size:.84em;text-transform:uppercase;letter-spacing:.04em;color:var(--primary);}
+  .tl-item .tl-text{font-size:.94em;color:var(--text);margin-top:2px;}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 6px;}
+  .ba-col{border-radius:16px;padding:20px 22px;border:1px solid var(--border);}
+  .ba-col.vorher{background:#fdf2f0;border-color:#f3c4ba;}
+  .ba-col.jetzt{background:#f3f9e9;border-color:#cfe39c;}
+  .ba-col h4{font-family:'Arial Narrow','Inter',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:.92em;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .ba-col.vorher h4{color:#9a2a14;} .ba-col.jetzt h4{color:#3a6312;}
+  .ba-col ul{list-style:none;padding-left:0;}
+  .ba-col li{position:relative;padding-left:22px;margin-bottom:9px;font-size:.9em;line-height:1.5;}
+  .ba-col.vorher li::before{content:"\2715";position:absolute;left:0;color:#c0392b;font-weight:700;}
+  .ba-col.jetzt li::before{content:"\2713";position:absolute;left:0;color:#5a9216;font-weight:700;}
+
+  .fx{display:inline-block;padding:2px 9px;border-radius:80px;font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;}
+  .fx-done{background:#dcefdf;color:#22622e;} .fx-prog{background:#fdf0cd;color:#896407;} .fx-open{background:#eaeef2;color:#56636e;}
+
   .report-footer{text-align:center;padding:28px;color:var(--text-muted);font-size:.84em;margin-top:34px;}
   .report-footer strong{color:var(--primary);}
   @media print{body{padding:0;background:#fff;}.section,.report-header,.score-ring{box-shadow:none;}.section{break-inside:avoid;}}
@@ -99,9 +126,11 @@
     <h1>Website-Audit<br>SCALPWERK Regensburg</h1>
     <div class="subtitle">Technische, SEO- und Compliance-Analyse der Website haarpigmentierung-regensburg.de &ndash; mit priorisiertem Ma&szlig;nahmenplan.</div>
     <span class="badge">Audit &middot; 9 Module</span>
+    <span class="hbadge-ok">&check; Update 13.06 &middot; Tracking wieder aktiv</span>
     <div class="meta">
       <span>Kunde: SCALPWERK SMP Studio</span>
-      <span>Datum: 12.06.2026</span>
+      <span>Audit: 12.06.2026</span>
+      <span>Aktualisiert: 13.06.2026</span>
       <span>Erstellt von: 2Penguins</span>
     </div>
   </div>
@@ -117,6 +146,60 @@
       <p>Technisch ist die Seite sauberer umgesetzt als der Branchendurchschnitt: HTTPS samt HSTS, starke Security-Header, vorgerenderter Inhalt, schneller Server und eine durchdachte Conversion-Strecke (2-Minuten-Quiz &rarr; kostenlose Fotoanalyse).</p>
       <p>Zwei Bereiche erfordern jedoch <strong>sofortiges</strong> Handeln: der <strong>rechtliche Compliance-Status</strong> (Tracking ohne Einwilligung, unvollst&auml;ndiges Impressum, Google Fonts) und die <strong>vollst&auml;ndig fehlenden strukturierten Daten</strong>.</p>
     </div>
+  </div>
+
+  <!-- STATUS / VERLAUF (Update 13.06) -->
+  <div class="section statusbox">
+    <h2>Status-Update &amp; Verlauf (Stand 13.06.2026)</h2>
+    <p class="lead">Der wichtigste Befund des Audits &ndash; das durch den Relaunch blockierte Tracking &ndash; ist innerhalb eines Tages behoben und live nachgepr&uuml;ft. Der urspr&uuml;ngliche Audit-Stand vom 12.06. bleibt unten unver&auml;ndert erhalten, damit der Verlauf nachvollziehbar ist.</p>
+
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="tl-date">12.06.2026 &middot; Audit</div>
+        <div class="tl-text">Vollst&auml;ndige Pr&uuml;fung (9 Module, 27 Befunde). Hauptbefund: Der CSP des neuen Stacks (Live seit 11.06.) blockierte das eigene Consent-Tool und das Conversion-Tracking. Das Werbebudget lief ohne Messung.</div>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-date">12.&ndash;13.06.2026 &middot; Fixes durch die Webfirma</div>
+        <div class="tl-text">CSP-Domains f&uuml;r CookieYes, Meta und Google Ads freigegeben &middot; fest eingebundenes <code>gtag.js</code> aus dem <code>&lt;head&gt;</code> entfernt &middot; Sitemap auf absolute URLs umgestellt und den <code>/quiz</code>-Widerspruch bereinigt.</div>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-date">13.06.2026 &middot; Live-Verifikation</div>
+        <div class="tl-text">Kompletter Funnel im Browser durchlaufen (Test starten &rarr; Quiz &rarr; <code>/result</code>). Der Cookie-Banner erscheint, Consent Mode V2 greift, und die Conversions erreichen Google Ads. Tracking l&auml;uft wieder.</div>
+      </div>
+    </div>
+
+    <div class="ba-grid">
+      <div class="ba-col vorher">
+        <h4>Vorher &middot; 12.06.</h4>
+        <ul>
+          <li>Cookie-Banner (CookieYes) wurde Besuchern <strong>nie angezeigt</strong> &ndash; vom CSP blockiert.</li>
+          <li>Ein hardcodiertes <code>gtag.js</code> setzte GA4-Cookies <strong>ohne Einwilligung</strong>.</li>
+          <li>Google-Ads-Conversions (Test starten, Quiz) wurden <strong>nicht gemessen</strong> (CSP).</li>
+          <li>Sitemap mit relativen URLs &rarr; von Google ignoriert; <code>/quiz</code> widerspr&uuml;chlich.</li>
+          <li>Das Werbebudget lief <strong>blind</strong>, ohne Conversion-Daten.</li>
+        </ul>
+      </div>
+      <div class="ba-col jetzt">
+        <h4>Jetzt &middot; 13.06. (live gepr&uuml;ft)</h4>
+        <ul>
+          <li>Cookie-Banner wird angezeigt; Consent Mode V2 greift (Default verweigert &rarr; nach Zustimmung erlaubt).</li>
+          <li>Hardcodiertes <code>gtag.js</code> entfernt &ndash; GA4 l&auml;dt nur noch nach Einwilligung &uuml;ber GTM.</li>
+          <li>Conversions <strong>&bdquo;Test starten&ldquo;</strong> und <strong>&bdquo;Quiz Abschluss&ldquo;</strong> feuern und erreichen Google Ads (Status 200/204).</li>
+          <li>Sitemap mit absoluten URLs, <code>/quiz</code>-Widerspruch entfernt.</li>
+          <li>Conversion-Messung wieder aktiv &ndash; das Werbebudget wird wieder messbar.</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.82em;color:var(--text-muted);margin-top:4px;"><strong>Hinweis zur Methode:</strong> Die Verifikation erfolgte als maschinelle Netzwerk-Pr&uuml;fung im Browser (ein Funnel-Durchlauf mit erteilter Einwilligung). Sie best&auml;tigt, dass die Conversions ausgel&ouml;st und an Google Ads &uuml;bermittelt werden; eine 100-%-Garantie &uuml;ber alle Ger&auml;te/Szenarien ist damit nicht verbunden.</p>
+
+    <h3>Noch offen / n&auml;chste Schritte</h3>
+    <ul>
+      <li><strong>Rechtstexte:</strong> korrektes Impressum (&sect;5 DDG: Rechtsform, verantwortliche Person, USt-Status) und Datenschutzerkl&auml;rung mit allen eingesetzten Tools &ndash; Text wird von uns geliefert.</li>
+      <li><strong>Kleiner CSP-Rest:</strong> <code>www.google.de</code> / <code>www.google.com</code> noch in <code>connect-src</code> erg&auml;nzen (redundanter Regional-Endpunkt; die Messung l&auml;uft bereits &uuml;ber die Hauptdomains).</li>
+      <li><strong>Google-Ads-Konto:</strong> Aufr&auml;umen der Conversion Actions (alte/doppelte Aktionen aussortieren, Primary korrekt setzen).</li>
+      <li><strong>Kontrolle:</strong> Hosting-Zugang und Code-Export zu GitHub, damit wir nicht allein vom Entwickler abh&auml;ngig sind.</li>
+      <li><strong>Optimierung (separat):</strong> strukturierte Daten, 301-Weiterleitungen der Alt-URLs, Bildformate und Barrierefreiheit &ndash; zweite Phase.</li>
+    </ul>
   </div>
 
   <!-- MANAGEMENT SUMMARY -->
@@ -162,6 +245,7 @@
     </table>
     <p>Die neuen Money-Pages <code>/services</code> und <code>/quiz</code> sind Google <strong>unbekannt</strong> (&bdquo;URL is unknown to Google&ldquo;) &ndash; Folge der ung&uuml;ltigen Sitemap (relative URLs) und fehlender 301-Verkn&uuml;pfung.</p>
     <div class="rec-card"><span class="tag">Priorit&auml;t 0</span><strong>301-Weiterleitungen</strong> aller Alt-URLs auf passende neue Seiten + <strong>Sitemap reparieren</strong> (absolute URLs) &ndash; bevor weitere Content- oder Design-Arbeit Sinn ergibt.</div>
+    <div class="rec-card" style="background:#f3f9e9;border-color:#cfe39c;"><span class="fx fx-done">Teil-Update 13.06</span> &nbsp;Die <strong>Sitemap</strong> ist repariert (absolute URLs, <code>/quiz</code>-Widerspruch entfernt). Die <strong>301-Weiterleitungen</strong> der Alt-URLs sind noch <span class="fx fx-open">offen</span> &ndash; Teil der separaten SEO-Phase.</div>
   </div>
 
   <!-- INDEXIERBARKEIT -->
@@ -203,6 +287,7 @@
       <li><strong>Google Ads</strong> (<code>AW-17524084232</code>): 3 Conversions (Test starten, Quiz-Abschluss, WhatsApp) + Enhanced Conversions.</li>
       <li><strong>Meta Conversions API</strong> (Dataset <code>1568772624300616</code>) &uuml;ber einen <strong>server-side Container (Stape, EU)</strong> &ndash; zweiter Container <code>GTM-M377NKN9</code>.</li>
     </ul>
+    <div class="rec-card"><span class="tag">Zuordnung</span>Die <strong>GTM-Konfiguration selbst ist korrekt und consent-aware umgesetzt</strong> (Consent Mode V2 greift nachweislich, Conversions sauber auf die Funnel-Events gemappt, server-side CAPI). Die Ursache der St&ouml;rung liegt <strong>nicht im GTM-Container</strong>, sondern im <strong>Frontend des Relaunches (11.06)</strong>: der CSP gibt die ben&ouml;tigten Domains nicht frei, und ein hardcodiertes <code>gtag.js</code> im <code>&lt;head&gt;</code> umgeht den Consent Mode. Fix daher beim Website-Entwickler, nicht im GTM.</div>
     <h3>Kritische Fehlkonfiguration</h3>
     <div class="rec-card crit"><strong>Der CSP blockiert das eigene Consent-Tool und das Conversion-Tracking.</strong> Im Netzwerk-Mitschnitt scheitern (FAILED &ndash; csp/ORB):
       <ul style="margin-top:6px">
@@ -215,6 +300,7 @@
     <div class="rec-card crit"><strong>GA4 trackt ohne Einwilligung.</strong> Ein fest im <code>&lt;head&gt;</code> eingebundenes <code>gtag.js</code> setzt die Cookies <code>_ga</code>, <code>_ga_NQL61NCH0M</code>, <code>_gcl_au</code> sofort beim Laden &ndash; am Consent Mode vorbei (best&auml;tigt: <code>page_view</code> gesendet, Cookies gesetzt, kein Banner).</div>
     <p><strong>Netto (empirisch verifiziert &ndash; kompletter Funnel-Durchlauf Test starten &rarr; Quiz &rarr; <code>/result</code>):</strong> Funktionsf&auml;hig ist nur die GA4-Basisanalyse (<code>page_view</code> inkl. <code>/result</code> &rarr; 204). Der Consent-Banner erscheint zu keinem Zeitpunkt; die Google-Ads-Conversion (<code>AW-17524084232</code>) wird beim Quiz-Abschluss erneut blockiert (FAILED csp); an den Stape-Server (<code>ldopgkeq.euc.stape.net</code>) geht <em>kein einziger</em> Request &rarr; Meta erh&auml;lt nichts. <strong>Das Werbebudget l&auml;uft vollst&auml;ndig ohne Conversion-Messung.</strong></p>
     <div class="rec-card"><span class="tag">CSP-Fix</span>In den CSP (script-src / connect-src / img-src) aufnehmen: <code>cdn-cookieyes.com</code>, <code>log.cookieyes.com</code>, <code>connect.facebook.net</code>, <code>www.facebook.com</code>, <code>capi-automation.s3.us-east-2.amazonaws.com</code>, <code>pagead2.googlesyndication.com</code>, <code>www.googleadservices.com</code>, <code>www.google.com</code>, <code>ldopgkeq.euc.stape.net</code>. Zus&auml;tzlich das fest im <code>&lt;head&gt;</code> eingebundene <code>gtag.js</code> entfernen und GA4 ausschlie&szlig;lich &uuml;ber GTM/Consent Mode laden.</div>
+    <div class="rec-card" style="background:#f3f9e9;border-color:#cfe39c;"><span class="fx fx-done">Behoben 13.06</span> &nbsp;Die Webfirma hat die CSP-Domains freigegeben und das hardcodierte <code>gtag.js</code> entfernt. Live nachgepr&uuml;ft: Cookie-Banner erscheint, Consent Mode V2 greift, und die Conversions &bdquo;Test starten&ldquo; und &bdquo;Quiz Abschluss&ldquo; erreichen Google Ads (200/204). Offener Rest: <code>www.google.de</code>/<code>www.google.com</code> in <code>connect-src</code> (redundanter Regional-Endpunkt).</div>
   </div>
 
   <!-- SEVERITY MATRIX -->
@@ -248,34 +334,35 @@
   <!-- FINDINGS -->
   <div class="section">
     <h2>Befunde im Detail</h2>
+    <p style="font-size:.9em;color:var(--text-muted);margin-bottom:4px;">Die Spalte <strong>Stand</strong> zeigt den Status am 13.06.: <span class="fx fx-done">Behoben</span> live verifiziert &middot; <span class="fx fx-prog">In Arbeit</span> Text/Daten von uns &middot; <span class="fx fx-open">Offen</span> gr&ouml;&szlig;tenteils separate Optimierungsphase, kein blockierender Defekt.</p>
     <table>
-      <thead><tr><th>#</th><th>Thema</th><th>Severity</th><th>Befund</th><th>Empfehlung</th></tr></thead>
+      <thead><tr><th>#</th><th>Thema</th><th>Severity</th><th>Befund</th><th>Empfehlung</th><th>Stand</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>Tracking ohne Einwilligung</td><td><span class="sev sev-critical">Kritisch</span></td><td>Consent Mode V2 (CookieYes) ist in GTM konfiguriert, doch der CSP blockiert das CookieYes-Skript &rarr; <strong>Banner wird nie angezeigt</strong>. Zugleich setzt ein fest im <code>&lt;head&gt;</code> eingebundenes <code>gtag.js</code> (<code>G-NQL61NCH0M</code>) GA4-Cookies ohne Einwilligung. Versto&szlig; &sect;25 TTDSG.</td><td><code>cdn-cookieyes.com</code> im CSP freigeben; hardcodiertes gtag entfernen bzw. dem Consent Mode unterstellen.</td></tr>
-        <tr><td>2</td><td>Datenschutzerkl&auml;rung widerspr&uuml;chlich</td><td><span class="sev sev-critical">Kritisch</span></td><td>Erkl&auml;rt &bdquo;nur technisch notwendige Cookies&ldquo;, verschweigt aber Google Analytics/GTM.</td><td>GA4 &amp; GTM samt Rechtsgrundlagen und Hoster offenlegen.</td></tr>
-        <tr><td>3</td><td>Google Fonts extern</td><td><span class="sev sev-critical">Kritisch</span></td><td>Schriften von <code>fonts.gstatic.com</code> &rarr; IP-Transfer in die USA ohne Einwilligung (vgl. LG M&uuml;nchen I).</td><td>Fonts self-hosten.</td></tr>
-        <tr><td>4</td><td>Impressum unvollst&auml;ndig</td><td><span class="sev sev-critical">Kritisch</span></td><td>Keine Rechtsform, keine vertretungsberechtigte Person, USt-IdNr. &bdquo;wird erg&auml;nzt&ldquo; (&sect;5 DDG).</td><td>Pflichtangaben vervollst&auml;ndigen.</td></tr>
-        <tr><td>5</td><td>Keine strukturierten Daten</td><td><span class="sev sev-critical">Kritisch</span></td><td>0 JSON-LD-Bl&ouml;cke: kein LocalBusiness, Service, FAQ, Review/AggregateRating.</td><td>Schema-Paket implementieren (siehe Ma&szlig;nahmenplan).</td></tr>
-        <tr><td>6</td><td>Barrierefreiheit (BFSG)</td><td><span class="sev sev-critical">Kritisch</span></td><td><code>user-scalable=no</code> verhindert Zoom (WCAG&nbsp;1.4.4); keine Barrierefreiheitserkl&auml;rung.</td><td>Zoom freigeben, Erkl&auml;rung erg&auml;nzen, BFSG-Pflicht pr&uuml;fen.</td></tr>
-        <tr><td>7</td><td>Social-Preview defekt</td><td><span class="sev sev-high">Hoch</span></td><td><code>og:image</code> (<code>/og-cover.jpg</code>) liefert 404; <code>og:url</code> &amp; Twitter-Tags leer.</td><td>OG-Bild erstellen, absolute Pfade, Twitter-Tags erg&auml;nzen.</td></tr>
-        <tr><td>8</td><td>Kein Canonical-Tag</td><td><span class="sev sev-high">Hoch</span></td><td>Auf keiner Seite ein <code>rel="canonical"</code>.</td><td>Self-Canonical auf allen Seiten setzen.</td></tr>
-        <tr><td>9</td><td>Sitemap ung&uuml;ltig</td><td><span class="sev sev-high">Hoch</span></td><td>Relative <code>&lt;loc&gt;/services&lt;/loc&gt;</code> (verst&ouml;&szlig;t gegen Sitemaps-Standard); unvollst&auml;ndig.</td><td>Absolute URLs, fehlende Seiten erg&auml;nzen.</td></tr>
-        <tr><td>10</td><td>Indexierte 404-Seite</td><td><span class="sev sev-high">Hoch</span></td><td><code>/muenchen</code> ist in Google indexiert, liefert am Server aber 404.</td><td>Seite wiederherstellen oder 301 weiterleiten.</td></tr>
-        <tr><td>11</td><td>Hero-Bilder als PNG</td><td><span class="sev sev-high">Hoch</span></td><td>Foto-Heroes als PNG (94&nbsp;+&nbsp;105&nbsp;KB) im LCP-Bereich.</td><td>In WebP/AVIF konvertieren (&minus;60&ndash;75&nbsp;%).</td></tr>
-        <tr><td>12</td><td>Conversion-Tracking durch CSP blockiert</td><td><span class="sev sev-high">Hoch</span></td><td>Google-Ads-Conversions (<code>AW-17524084232</code>: Test starten, Quiz, WhatsApp) + Meta Pixel/CAPI sind in GTM korrekt eingerichtet, werden aber vom CSP blockiert (<code>pagead2</code>/<code>google.com/ccm</code>, <code>connect.facebook.net</code> = FAILED) &rarr; <strong>Conversions werden nicht gemessen</strong>.</td><td>Conversion-Domains im CSP freigeben; Messung verifizieren.</td></tr>
-        <tr><td>13</td><td>Fehlende Alt-Texte</td><td><span class="sev sev-medium">Mittel</span></td><td>3 von 6 Bildern ohne Alt-Attribut.</td><td>Beschreibende Alt-Texte erg&auml;nzen.</td></tr>
-        <tr><td>14</td><td>Text-Verklebung</td><td><span class="sev sev-medium">Mittel</span></td><td>Fehlende Leerzeichen: &bdquo;Haar.Finden&ldquo;, &bdquo;aufGoogle Maps&ldquo;.</td><td>Span-Abst&auml;nde im Frontend korrigieren.</td></tr>
-        <tr><td>15</td><td>JS-/CSS-Gewicht</td><td><span class="sev sev-medium">Mittel</span></td><td>Haupt-Bundle 369&nbsp;KB + framer-motion 124&nbsp;KB; CSS 131&nbsp;KB.</td><td>Code-Splitting/Lazy-Load, CSS-Purge &rarr; bessere INP.</td></tr>
-        <tr><td>16</td><td>Duplizierte Rechtsseiten</td><td><span class="sev sev-medium">Mittel</span></td><td><code>/privacy</code> + <code>/terms</code> (EN-Template) neben <code>/datenschutz</code> + <code>/impressum</code>.</td><td>Entfernen oder auf noindex.</td></tr>
-        <tr><td>17</td><td>Keine Preisindikation</td><td><span class="sev sev-medium">Mittel</span></td><td>Durchg&auml;ngig &bdquo;individuell&ldquo; ohne Ab-Preis.</td><td>&bdquo;ab X&nbsp;&euro;&ldquo; zur Lead-Qualifizierung erw&auml;gen.</td></tr>
-        <tr><td>18</td><td>DSGVO-Einwilligung Foto-Formular</td><td><span class="sev sev-medium">Mittel</span></td><td>Biometrie/Fotos (Art.&nbsp;9 DSGVO) &ndash; expliziter Consent-Checkbox nicht best&auml;tigt.</td><td>Aktive Einwilligungs-Checkbox im Formular.</td></tr>
-        <tr><td>19</td><td>Tilda-Altbestand im Index</td><td><span class="sev sev-medium">Mittel</span></td><td>Veraltete <code>/tpost/&hellip;</code>-URLs aus einer fr&uuml;heren Tilda-Version sind weiterhin im Google-Index, liefern auf dem neuen React-Stack aber 404.</td><td>301-Weiterleitungen der Alt-URLs auf passende neue Seiten einrichten.</td></tr>
-        <tr><td>20</td><td>Kein <code>llms.txt</code></td><td><span class="sev sev-medium">Mittel</span></td><td>Keine steuerbare Kontextdatei f&uuml;r AI-Suchmaschinen (404).</td><td><code>llms.txt</code> anlegen.</td></tr>
-        <tr><td>21</td><td>HSTS ohne Preload</td><td><span class="sev sev-low">Niedrig</span></td><td>HSTS aktiv, aber ohne <code>preload</code>-Direktive.</td><td>Optional <code>preload</code> erg&auml;nzen.</td></tr>
-        <tr><td>22</td><td>Sitemap-Pfad in robots.txt</td><td><span class="sev sev-low">Niedrig</span></td><td>Relativer Verweis <code>Sitemap: /sitemap.xml</code>.</td><td>Absolute URL angeben.</td></tr>
-        <tr><td>23</td><td>Datum Datenschutz</td><td><span class="sev sev-low">Niedrig</span></td><td>Stand 01.06.2026 &ndash; nach Tracking-Update aktualisieren.</td><td>Bei &Auml;nderung neu datieren.</td></tr>
-        <tr><td>24</td><td>E-E-A-T-Signale</td><td><span class="sev sev-low">Niedrig</span></td><td>Keine Experten-/Team-Seiten, keine <code>sameAs</code>-Verkn&uuml;pfungen.</td><td>Profilseite + Social-Verkn&uuml;pfungen.</td></tr>
-        <tr><td>25</td><td>Kein CMS / Redaktionssystem</td><td><span class="sev sev-medium">Mittel</span></td><td>Inhalte sind im Code hardcodiert (TanStack&nbsp;Start, React/Vite) &ndash; kein CMS, kein Editor, keine Admin-Oberfl&auml;che. Pflege nur per Code-&Auml;nderung &amp; Deploy durch eine:n Entwickler:in.</td><td>Bei h&auml;ufigen Inhalts&auml;nderungen Headless-CMS oder Editor-Schicht erw&auml;gen.</td></tr>
+        <tr><td>1</td><td>Tracking ohne Einwilligung</td><td><span class="sev sev-critical">Kritisch</span></td><td>Consent Mode V2 (CookieYes) ist in GTM konfiguriert, doch der CSP blockiert das CookieYes-Skript &rarr; <strong>Banner wird nie angezeigt</strong>. Zugleich setzt ein fest im <code>&lt;head&gt;</code> eingebundenes <code>gtag.js</code> (<code>G-NQL61NCH0M</code>) GA4-Cookies ohne Einwilligung. Versto&szlig; &sect;25 TTDSG.</td><td><code>cdn-cookieyes.com</code> im CSP freigeben; hardcodiertes gtag entfernen bzw. dem Consent Mode unterstellen.</td><td><span class="fx fx-done">Behoben</span></td></tr>
+        <tr><td>2</td><td>Datenschutzerkl&auml;rung widerspr&uuml;chlich</td><td><span class="sev sev-critical">Kritisch</span></td><td>Erkl&auml;rt &bdquo;nur technisch notwendige Cookies&ldquo;, verschweigt aber Google Analytics/GTM.</td><td>GA4 &amp; GTM samt Rechtsgrundlagen und Hoster offenlegen.</td><td><span class="fx fx-prog">In Arbeit</span></td></tr>
+        <tr><td>3</td><td>Google Fonts extern</td><td><span class="sev sev-critical">Kritisch</span></td><td>Schriften von <code>fonts.gstatic.com</code> &rarr; IP-Transfer in die USA ohne Einwilligung (vgl. LG M&uuml;nchen I).</td><td>Fonts self-hosten.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>4</td><td>Impressum unvollst&auml;ndig</td><td><span class="sev sev-critical">Kritisch</span></td><td>Keine Rechtsform, keine vertretungsberechtigte Person, USt-IdNr. &bdquo;wird erg&auml;nzt&ldquo; (&sect;5 DDG).</td><td>Pflichtangaben vervollst&auml;ndigen.</td><td><span class="fx fx-prog">In Arbeit</span></td></tr>
+        <tr><td>5</td><td>Keine strukturierten Daten</td><td><span class="sev sev-critical">Kritisch</span></td><td>0 JSON-LD-Bl&ouml;cke: kein LocalBusiness, Service, FAQ, Review/AggregateRating.</td><td>Schema-Paket implementieren (siehe Ma&szlig;nahmenplan).</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>6</td><td>Barrierefreiheit (BFSG)</td><td><span class="sev sev-critical">Kritisch</span></td><td><code>user-scalable=no</code> verhindert Zoom (WCAG&nbsp;1.4.4); keine Barrierefreiheitserkl&auml;rung.</td><td>Zoom freigeben, Erkl&auml;rung erg&auml;nzen, BFSG-Pflicht pr&uuml;fen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>7</td><td>Social-Preview defekt</td><td><span class="sev sev-high">Hoch</span></td><td><code>og:image</code> (<code>/og-cover.jpg</code>) liefert 404; <code>og:url</code> &amp; Twitter-Tags leer.</td><td>OG-Bild erstellen, absolute Pfade, Twitter-Tags erg&auml;nzen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>8</td><td>Kein Canonical-Tag</td><td><span class="sev sev-high">Hoch</span></td><td>Auf keiner Seite ein <code>rel="canonical"</code>.</td><td>Self-Canonical auf allen Seiten setzen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>9</td><td>Sitemap ung&uuml;ltig</td><td><span class="sev sev-high">Hoch</span></td><td>Relative <code>&lt;loc&gt;/services&lt;/loc&gt;</code> (verst&ouml;&szlig;t gegen Sitemaps-Standard); unvollst&auml;ndig.</td><td>Absolute URLs, fehlende Seiten erg&auml;nzen.</td><td><span class="fx fx-done">Behoben</span></td></tr>
+        <tr><td>10</td><td>Indexierte 404-Seite</td><td><span class="sev sev-high">Hoch</span></td><td><code>/muenchen</code> ist in Google indexiert, liefert am Server aber 404.</td><td>Seite wiederherstellen oder 301 weiterleiten.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>11</td><td>Hero-Bilder als PNG</td><td><span class="sev sev-high">Hoch</span></td><td>Foto-Heroes als PNG (94&nbsp;+&nbsp;105&nbsp;KB) im LCP-Bereich.</td><td>In WebP/AVIF konvertieren (&minus;60&ndash;75&nbsp;%).</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>12</td><td>Conversion-Tracking durch CSP blockiert</td><td><span class="sev sev-high">Hoch</span></td><td>Google-Ads-Conversions (<code>AW-17524084232</code>: Test starten, Quiz, WhatsApp) + Meta Pixel/CAPI sind in GTM korrekt eingerichtet, werden aber vom CSP blockiert (<code>pagead2</code>/<code>google.com/ccm</code>, <code>connect.facebook.net</code> = FAILED) &rarr; <strong>Conversions werden nicht gemessen</strong>.</td><td>Conversion-Domains im CSP freigeben; Messung verifizieren.</td><td><span class="fx fx-done">Behoben</span></td></tr>
+        <tr><td>13</td><td>Fehlende Alt-Texte</td><td><span class="sev sev-medium">Mittel</span></td><td>3 von 6 Bildern ohne Alt-Attribut.</td><td>Beschreibende Alt-Texte erg&auml;nzen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>14</td><td>Text-Verklebung</td><td><span class="sev sev-medium">Mittel</span></td><td>Fehlende Leerzeichen: &bdquo;Haar.Finden&ldquo;, &bdquo;aufGoogle Maps&ldquo;.</td><td>Span-Abst&auml;nde im Frontend korrigieren.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>15</td><td>JS-/CSS-Gewicht</td><td><span class="sev sev-medium">Mittel</span></td><td>Haupt-Bundle 369&nbsp;KB + framer-motion 124&nbsp;KB; CSS 131&nbsp;KB.</td><td>Code-Splitting/Lazy-Load, CSS-Purge &rarr; bessere INP.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>16</td><td>Duplizierte Rechtsseiten</td><td><span class="sev sev-medium">Mittel</span></td><td><code>/privacy</code> + <code>/terms</code> (EN-Template) neben <code>/datenschutz</code> + <code>/impressum</code>.</td><td>Entfernen oder auf noindex.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>17</td><td>Keine Preisindikation</td><td><span class="sev sev-medium">Mittel</span></td><td>Durchg&auml;ngig &bdquo;individuell&ldquo; ohne Ab-Preis.</td><td>&bdquo;ab X&nbsp;&euro;&ldquo; zur Lead-Qualifizierung erw&auml;gen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>18</td><td>DSGVO-Einwilligung Foto-Formular</td><td><span class="sev sev-medium">Mittel</span></td><td>Biometrie/Fotos (Art.&nbsp;9 DSGVO) &ndash; expliziter Consent-Checkbox nicht best&auml;tigt.</td><td>Aktive Einwilligungs-Checkbox im Formular.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>19</td><td>Tilda-Altbestand im Index</td><td><span class="sev sev-medium">Mittel</span></td><td>Veraltete <code>/tpost/&hellip;</code>-URLs aus einer fr&uuml;heren Tilda-Version sind weiterhin im Google-Index, liefern auf dem neuen React-Stack aber 404.</td><td>301-Weiterleitungen der Alt-URLs auf passende neue Seiten einrichten.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>20</td><td>Kein <code>llms.txt</code></td><td><span class="sev sev-medium">Mittel</span></td><td>Keine steuerbare Kontextdatei f&uuml;r AI-Suchmaschinen (404).</td><td><code>llms.txt</code> anlegen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>21</td><td>HSTS ohne Preload</td><td><span class="sev sev-low">Niedrig</span></td><td>HSTS aktiv, aber ohne <code>preload</code>-Direktive.</td><td>Optional <code>preload</code> erg&auml;nzen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>22</td><td>Sitemap-Pfad in robots.txt</td><td><span class="sev sev-low">Niedrig</span></td><td>Relativer Verweis <code>Sitemap: /sitemap.xml</code>.</td><td>Absolute URL angeben.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>23</td><td>Datum Datenschutz</td><td><span class="sev sev-low">Niedrig</span></td><td>Stand 01.06.2026 &ndash; nach Tracking-Update aktualisieren.</td><td>Bei &Auml;nderung neu datieren.</td><td><span class="fx fx-prog">In Arbeit</span></td></tr>
+        <tr><td>24</td><td>E-E-A-T-Signale</td><td><span class="sev sev-low">Niedrig</span></td><td>Keine Experten-/Team-Seiten, keine <code>sameAs</code>-Verkn&uuml;pfungen.</td><td>Profilseite + Social-Verkn&uuml;pfungen.</td><td><span class="fx fx-open">Offen</span></td></tr>
+        <tr><td>25</td><td>Kein CMS / Redaktionssystem</td><td><span class="sev sev-medium">Mittel</span></td><td>Inhalte sind im Code hardcodiert (TanStack&nbsp;Start, React/Vite) &ndash; kein CMS, kein Editor, keine Admin-Oberfl&auml;che. Pflege nur per Code-&Auml;nderung &amp; Deploy durch eine:n Entwickler:in.</td><td>Bei h&auml;ufigen Inhalts&auml;nderungen Headless-CMS oder Editor-Schicht erw&auml;gen.</td><td><span class="fx fx-open">Offen</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -335,7 +422,7 @@
 
   <div class="report-footer">
     <p><strong>Website-Audit SCALPWERK Regensburg</strong> &mdash; erstellt von <strong>2Penguins</strong> f&uuml;r <strong>SCALPWERK SMP Studio</strong></p>
-    <p>Berichtsdatum: 12.06.2026 &middot; Gesamt-Score 54/100</p>
+    <p>Audit: 12.06.2026 (Score 54/100) &middot; Status-Update: 13.06.2026 (Tracking behoben &amp; live verifiziert)</p>
     <p style="margin-top:8px;opacity:.6;">Vertraulich &ndash; ausschlie&szlig;lich f&uuml;r den Adressaten bestimmt.</p>
   </div>
 
