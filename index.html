@@ -138,13 +138,14 @@
   <!-- SCORE HERO -->
   <div class="score-wrap">
     <div class="score-ring">
-      <div class="num">54<small>/100</small></div>
-      <div class="lbl">Gesamt-Score</div>
+      <div class="num">62<small>/100</small></div>
+      <div class="lbl">Gesamt-Score &middot; Stand 13.06</div>
+      <div style="font-size:.72em;opacity:.78;margin-top:10px;line-height:1.5;border-top:1px solid rgba(255,255,255,.18);padding-top:8px;">Audit 12.06: <strong>54</strong><br>Ziel nach zugesagten Fixes: <strong>64</strong></div>
     </div>
     <div class="score-note">
-      <p class="big"><strong>Solide Basis &ndash; mit zwei dringenden Baustellen.</strong></p>
+      <p class="big"><strong>Solide Basis &ndash; die dringendste Baustelle ist bereits behoben.</strong></p>
       <p>Technisch ist die Seite sauberer umgesetzt als der Branchendurchschnitt: HTTPS samt HSTS, starke Security-Header, vorgerenderter Inhalt, schneller Server und eine durchdachte Conversion-Strecke (2-Minuten-Quiz &rarr; kostenlose Fotoanalyse).</p>
-      <p>Zwei Bereiche erfordern jedoch <strong>sofortiges</strong> Handeln: der <strong>rechtliche Compliance-Status</strong> (Tracking ohne Einwilligung, unvollst&auml;ndiges Impressum, Google Fonts) und die <strong>vollst&auml;ndig fehlenden strukturierten Daten</strong>.</p>
+      <p>Der gr&ouml;&szlig;te Mangel des Audits &ndash; das durch den CSP blockierte Tracking &ndash; ist <strong>behoben und live verifiziert</strong>; die Rechtstexte (Impressum/Datenschutz) und Self-Hosting der Fonts sind in Umsetzung. Damit steigt der Score von 54 auf <strong>62</strong>. Gr&ouml;&szlig;ter verbleibender Hebel sind die <strong>vollst&auml;ndig fehlenden strukturierten Daten</strong> (separate Optimierungsphase).</p>
     </div>
   </div>
 
@@ -319,14 +320,14 @@
     <div class="modbars">
       <div class="row"><span>1 &middot; Technisches Fundament</span><span class="bar"><span class="fill good" style="width:70%"></span></span><span class="sc">7.0</span></div>
       <div class="row"><span>2 &middot; Performance</span><span class="bar"><span class="fill" style="width:60%"></span></span><span class="sc">6.0</span></div>
-      <div class="row"><span>3 &middot; SEO</span><span class="bar"><span class="fill" style="width:55%"></span></span><span class="sc">5.5</span></div>
+      <div class="row"><span>3 &middot; SEO <span style="color:var(--success);font-size:.82em;">&uarr;</span></span><span class="bar"><span class="fill good" style="width:60%"></span></span><span class="sc">6.0</span></div>
       <div class="row"><span>4 &middot; Strukturierte Daten &amp; AI</span><span class="bar"><span class="fill bad" style="width:20%"></span></span><span class="sc">2.0</span></div>
-      <div class="row"><span>5 &middot; Analytics &amp; Tracking</span><span class="bar"><span class="fill" style="width:50%"></span></span><span class="sc">5.0</span></div>
+      <div class="row"><span>5 &middot; Analytics &amp; Tracking <span style="color:var(--success);font-size:.82em;">&uarr;</span></span><span class="bar"><span class="fill good" style="width:85%"></span></span><span class="sc">8.5</span></div>
       <div class="row"><span>6 &middot; UX &amp; Conversion</span><span class="bar"><span class="fill good" style="width:75%"></span></span><span class="sc">7.5</span></div>
       <div class="row"><span>7 &middot; Content</span><span class="bar"><span class="fill good" style="width:70%"></span></span><span class="sc">7.0</span></div>
-      <div class="row"><span>8 &middot; Compliance 2026</span><span class="bar"><span class="fill bad" style="width:30%"></span></span><span class="sc">3.0</span></div>
+      <div class="row"><span>8 &middot; Compliance 2026 <span style="color:var(--success);font-size:.82em;">&uarr;</span></span><span class="bar"><span class="fill" style="width:55%"></span></span><span class="sc">5.5</span></div>
     </div>
-    <p style="font-size:.82em;color:var(--text-muted);margin-top:12px;">Hinweis: PageSpeed Insights (Core Web Vitals) konnten w&auml;hrend des Audits nicht abgerufen werden (API-Limit). Die Performance-Bewertung beruht auf Server-Timings und Asset-Gr&ouml;&szlig;en und sollte mit einem Lighthouse-Lauf (API-Key) pr&auml;zisiert werden.<br><strong>Hinweis:</strong> Diese Modul-Noten sind der Stand des Audits vom 12.06. Die seither umgesetzten Fixes (v.&nbsp;a. Analytics &amp; Tracking, Compliance) sind im Abschnitt &bdquo;Status &amp; Verlauf&ldquo; oben sowie in der Spalte &bdquo;Stand&ldquo; abgebildet; eine Neubewertung erfolgt nach Abschluss der offenen Punkte.</p>
+    <p style="font-size:.82em;color:var(--text-muted);margin-top:12px;">Hinweis: PageSpeed Insights (Core Web Vitals) konnten w&auml;hrend des Audits nicht abgerufen werden (API-Limit). Die Performance-Bewertung beruht auf Server-Timings und Asset-Gr&ouml;&szlig;en und sollte mit einem Lighthouse-Lauf (API-Key) pr&auml;zisiert werden.<br><strong>Neubewertung (Stand 13.06):</strong> Die mit <span style="color:var(--success);">&uarr;</span> markierten Module wurden anhand der verifizierten Fixes neu bewertet &ndash; <strong>SEO</strong> 5,5&nbsp;&rarr;&nbsp;6,0 (Sitemap valide), <strong>Analytics &amp; Tracking</strong> 5,0&nbsp;&rarr;&nbsp;8,5 (CSP behoben, Conversions feuern live), <strong>Compliance</strong> 3,0&nbsp;&rarr;&nbsp;5,5 (Consent-Blocker entfernt; Rechtstexte und Fonts noch in Umsetzung). <strong>Gesamt-Score 54&nbsp;&rarr;&nbsp;62.</strong> Nach Abschluss der zugesagten Fixes (Texte live, Fonts self-hosted) steigt Compliance auf ~7,0 &rarr; Gesamt ~64. Das gr&ouml;&szlig;te verbleibende Potenzial liegt bei den strukturierten Daten (#4 &ndash; aktuell 2,0).</p>
   </div>
 
   <!-- FINDINGS -->
@@ -420,7 +421,7 @@
 
   <div class="report-footer">
     <p><strong>Website-Audit SCALPWERK Regensburg</strong> &mdash; erstellt von <strong>2Penguins</strong> f&uuml;r <strong>SCALPWERK SMP Studio</strong></p>
-    <p>Audit: 12.06.2026 (Score 54/100) &middot; Status-Update: 13.06.2026 (Tracking behoben &amp; live verifiziert)</p>
+    <p>Audit: 12.06.2026 (Score 54/100) &middot; Status-Update: 13.06.2026 (Score 62/100 &ndash; Tracking behoben &amp; live verifiziert)</p>
     <p style="margin-top:8px;opacity:.6;">Vertraulich &ndash; ausschlie&szlig;lich f&uuml;r den Adressaten bestimmt.</p>
   </div>
 
