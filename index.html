@@ -194,7 +194,7 @@
 
     <h3>Noch offen / n&auml;chste Schritte</h3>
     <ul>
-      <li><strong>Rechtstexte:</strong> korrektes Impressum (&sect;5 DDG: Rechtsform, verantwortliche Person, USt-Status) und Datenschutzerkl&auml;rung mit allen eingesetzten Tools &ndash; Text wird von uns geliefert.</li>
+      <li><strong>Rechtstexte (in Umsetzung):</strong> Impressum (&sect;5 DDG) und Datenschutzerkl&auml;rung sind von uns geliefert; der Entwickler tauscht sie auf der Seite aus. <strong>Google Fonts</strong> stellt er auf Self-Hosting um (zugesagt).</li>
       <li><strong>Kleiner CSP-Rest:</strong> <code>www.google.de</code> / <code>www.google.com</code> noch in <code>connect-src</code> erg&auml;nzen (redundanter Regional-Endpunkt; die Messung l&auml;uft bereits &uuml;ber die Hauptdomains).</li>
       <li><strong>Google-Ads-Konto:</strong> Aufr&auml;umen der Conversion Actions (alte/doppelte Aktionen aussortieren, Primary korrekt setzen).</li>
       <li><strong>Kontrolle:</strong> Hosting-Zugang und Code-Export zu GitHub, damit wir nicht allein vom Entwickler abh&auml;ngig sind.</li>
@@ -206,20 +206,18 @@
   <div class="section highlight">
     <h2>Management Summary</h2>
     <div class="rec-card warn"><strong>Hinweis zum Pr&uuml;fumfang:</strong> Die Website wurde am <strong>11.06.2026</strong> neu ausgespielt (React/TanStack l&ouml;st die fr&uuml;here Tilda-Seite ab). Dieser Audit bewertet die <strong>neue Version</strong> (Live-Pr&uuml;fung 12.06.2026). GA4-Verlaufsdaten vor dem 11.06. stammen von der Vorg&auml;nger-Seite und sind f&uuml;r die neue Seite nicht repr&auml;sentativ. Zum Vergleich: Die Vorg&auml;nger-Seite war eine Google-Ads-getriebene Lead-Maschine (&Oslash; rund 1.250 Quiz-Abschl&uuml;sse + 600 WhatsApp-Klicks/Monat) &ndash; genau dieser Funnel darf durch den Relaunch nicht brechen.</div>
-    <p class="lead">Die Website verkauft sich gut: klare Botschaft, emotionale Ansprache und eine starke Quiz-Funnel-Mechanik. Das technische Fundament (Sicherheit, Performance-Server, Pre-Rendering) ist &uuml;berdurchschnittlich. <strong>Den Score nach unten ziehen vor allem zwei Dinge:</strong></p>
+    <p class="lead">Die Website verkauft sich gut: klare Botschaft, emotionale Ansprache und eine starke Quiz-Funnel-Mechanik. Das technische Fundament (Sicherheit, Performance-Server, Pre-Rendering) ist &uuml;berdurchschnittlich. <strong>Den Score von 54 zogen zum Audit-Zeitpunkt (12.06.) vor allem zwei Dinge nach unten</strong> &ndash; der erste Punkt ist inzwischen gr&ouml;&szlig;tenteils erledigt:</p>
     <ul>
-      <li><strong>Compliance (zum Audit-Zeitpunkt 12.06.: durchgefallen &ndash; inzwischen teilweise behoben):</strong> Das Tracking ist technisch aufw&auml;ndig aufgesetzt (GA4, Consent Mode V2 via CookieYes, Google Ads, Meta CAPI, server-side Stape). Zum Audit war es jedoch <em>fehlkonfiguriert</em>: Der CSP blockierte den CookieYes-Banner, und ein fest eingebundenes <code>gtag.js</code> setzte GA4-Cookies ohne Einwilligung. <strong><span class="fx fx-done">Behoben 13.06</span> Der Banner wird jetzt angezeigt, der Consent Mode V2 greift live, das hardcodierte gtag ist entfernt &ndash; der &sect;25-TTDSG-Hauptpunkt ist damit ausger&auml;umt.</strong> F&uuml;r volle Rechtssicherheit noch offen: die <strong>Datenschutzerkl&auml;rung</strong> nennt die eingesetzten Tools weiterhin nicht, <strong>Google Fonts</strong> werden extern geladen (US-Transfer) und das <strong>Impressum</strong> ist unvollst&auml;ndig (&sect;5 DDG).</li>
+      <li><strong>Compliance (zum Audit-Zeitpunkt 12.06.: durchgefallen &ndash; inzwischen weitgehend behoben):</strong> Das Tracking ist technisch aufw&auml;ndig aufgesetzt (GA4, Consent Mode V2 via CookieYes, Google Ads, Meta CAPI, server-side Stape). Zum Audit war es jedoch <em>fehlkonfiguriert</em>: Der CSP blockierte den CookieYes-Banner, und ein fest eingebundenes <code>gtag.js</code> setzte GA4-Cookies ohne Einwilligung. <strong><span class="fx fx-done">Behoben 13.06</span> Der Banner wird jetzt angezeigt, der Consent Mode V2 greift live, das hardcodierte gtag ist entfernt &ndash; der &sect;25-TTDSG-Hauptpunkt ist ausger&auml;umt.</strong> <strong>Impressum</strong> und <strong>Datenschutzerkl&auml;rung</strong> werden mit den von uns gelieferten Texten ausgetauscht (in Umsetzung beim Entwickler), die <strong>Google Fonts</strong> stellt der Entwickler auf Self-Hosting um. Verbleibt im Kern die <strong>Barrierefreiheit (BFSG)</strong> &ndash; abh&auml;ngig von Umsatz/Mitarbeiterzahl (siehe offene Punkte).</li>
       <li><strong>Strukturierte Daten (0&nbsp;von&nbsp;100):</strong> Es ist <em>kein einziges</em> JSON-LD-Schema vorhanden &ndash; kein LocalBusiness, kein Service, keine FAQ, keine Bewertungssterne. F&uuml;r ein lokales Studio in Regensburg ist das der g&uuml;nstigste ungenutzte Wachstumshebel.</li>
     </ul>
-    <p><strong>Was wir von Ihnen brauchen:</strong> <span style="font-size:.88em;color:var(--text-muted)">(Consent-Banner und die Tracking-Konfiguration sind bereits erledigt.)</span></p>
+    <p><strong>Was wir von Ihnen brauchen:</strong> <span style="font-size:.88em;color:var(--text-muted)">(Consent-Banner und Tracking sind erledigt; Impressum-/Datenschutz-Texte sind geliefert und werden vom Entwickler eingebaut, Google Fonts stellt er auf Self-Hosting um.)</span></p>
     <ul>
-      <li>Daten f&uuml;r das <strong>Impressum</strong> (&sect;5 DDG): Rechtsform, verantwortliche Person mit Vor- und Nachname, korrekte E-Mail, USt-Status (Kleinunternehmer oder USt-IdNr.).</li>
-      <li>Freigabe f&uuml;r das <strong>Datenschutz-Update</strong> (die eingesetzten Tools werden offengelegt &ndash; Text liefern wir).</li>
-      <li>Best&auml;tigung der Unternehmensdaten (Rechtsform, Mitarbeiterzahl/Umsatz) zur Pr&uuml;fung der BFSG-Pflicht.</li>
+      <li>Best&auml;tigung der Unternehmensdaten (Rechtsform, Mitarbeiterzahl/Umsatz) zur Pr&uuml;fung der <strong>BFSG-Pflicht</strong> (Barrierefreiheit).</li>
     </ul>
 
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-value warn">Teilw.</div><div class="kpi-label">Compliance 2026 &middot; Consent behoben</div></div>
+      <div class="kpi-card"><div class="kpi-value warn">Teilw.</div><div class="kpi-label">Compliance &middot; Consent ok, Texte folgen</div></div>
       <div class="kpi-card"><div class="kpi-value bad">0</div><div class="kpi-label">JSON-LD Schemas</div></div>
       <div class="kpi-card"><div class="kpi-value good">288&nbsp;ms</div><div class="kpi-label">TTFB (Server)</div></div>
       <div class="kpi-card"><div class="kpi-value good">A&plus;</div><div class="kpi-label">Security-Header</div></div>
@@ -328,7 +326,7 @@
       <div class="row"><span>7 &middot; Content</span><span class="bar"><span class="fill good" style="width:70%"></span></span><span class="sc">7.0</span></div>
       <div class="row"><span>8 &middot; Compliance 2026</span><span class="bar"><span class="fill bad" style="width:30%"></span></span><span class="sc">3.0</span></div>
     </div>
-    <p style="font-size:.82em;color:var(--text-muted);margin-top:12px;">Hinweis: PageSpeed Insights (Core Web Vitals) konnten w&auml;hrend des Audits nicht abgerufen werden (API-Limit). Die Performance-Bewertung beruht auf Server-Timings und Asset-Gr&ouml;&szlig;en und sollte mit einem Lighthouse-Lauf (API-Key) pr&auml;zisiert werden.</p>
+    <p style="font-size:.82em;color:var(--text-muted);margin-top:12px;">Hinweis: PageSpeed Insights (Core Web Vitals) konnten w&auml;hrend des Audits nicht abgerufen werden (API-Limit). Die Performance-Bewertung beruht auf Server-Timings und Asset-Gr&ouml;&szlig;en und sollte mit einem Lighthouse-Lauf (API-Key) pr&auml;zisiert werden.<br><strong>Hinweis:</strong> Diese Modul-Noten sind der Stand des Audits vom 12.06. Die seither umgesetzten Fixes (v.&nbsp;a. Analytics &amp; Tracking, Compliance) sind im Abschnitt &bdquo;Status &amp; Verlauf&ldquo; oben sowie in der Spalte &bdquo;Stand&ldquo; abgebildet; eine Neubewertung erfolgt nach Abschluss der offenen Punkte.</p>
   </div>
 
   <!-- FINDINGS -->
@@ -339,9 +337,9 @@
       <thead><tr><th>#</th><th>Thema</th><th>Severity</th><th>Befund</th><th>Empfehlung</th><th>Stand</th></tr></thead>
       <tbody>
         <tr><td>1</td><td>Tracking ohne Einwilligung</td><td><span class="sev sev-critical">Kritisch</span></td><td>Consent Mode V2 (CookieYes) ist in GTM konfiguriert, doch der CSP blockiert das CookieYes-Skript &rarr; <strong>Banner wird nie angezeigt</strong>. Zugleich setzt ein fest im <code>&lt;head&gt;</code> eingebundenes <code>gtag.js</code> (<code>G-NQL61NCH0M</code>) GA4-Cookies ohne Einwilligung. Versto&szlig; &sect;25 TTDSG.</td><td><code>cdn-cookieyes.com</code> im CSP freigeben; hardcodiertes gtag entfernen bzw. dem Consent Mode unterstellen.</td><td><span class="fx fx-done">Behoben</span></td></tr>
-        <tr><td>2</td><td>Datenschutzerkl&auml;rung widerspr&uuml;chlich</td><td><span class="sev sev-critical">Kritisch</span></td><td>Erkl&auml;rt &bdquo;nur technisch notwendige Cookies&ldquo;, verschweigt aber Google Analytics/GTM.</td><td>GA4 &amp; GTM samt Rechtsgrundlagen und Hoster offenlegen.</td><td><span class="fx fx-prog">In Arbeit</span></td></tr>
-        <tr><td>3</td><td>Google Fonts extern</td><td><span class="sev sev-critical">Kritisch</span></td><td>Schriften von <code>fonts.gstatic.com</code> &rarr; IP-Transfer in die USA ohne Einwilligung (vgl. LG M&uuml;nchen I).</td><td>Fonts self-hosten.</td><td><span class="fx fx-open">Offen</span></td></tr>
-        <tr><td>4</td><td>Impressum unvollst&auml;ndig</td><td><span class="sev sev-critical">Kritisch</span></td><td>Keine Rechtsform, keine vertretungsberechtigte Person, USt-IdNr. &bdquo;wird erg&auml;nzt&ldquo; (&sect;5 DDG).</td><td>Pflichtangaben vervollst&auml;ndigen.</td><td><span class="fx fx-prog">In Arbeit</span></td></tr>
+        <tr><td>2</td><td>Datenschutzerkl&auml;rung widerspr&uuml;chlich</td><td><span class="sev sev-critical">Kritisch</span></td><td>Erkl&auml;rt &bdquo;nur technisch notwendige Cookies&ldquo;, verschweigt aber Google Analytics/GTM.</td><td>GA4 &amp; GTM samt Rechtsgrundlagen und Hoster offenlegen.</td><td><span class="fx fx-done">Behoben</span></td></tr>
+        <tr><td>3</td><td>Google Fonts extern</td><td><span class="sev sev-critical">Kritisch</span></td><td>Schriften von <code>fonts.gstatic.com</code> &rarr; IP-Transfer in die USA ohne Einwilligung (vgl. LG M&uuml;nchen I).</td><td>Fonts self-hosten.</td><td><span class="fx fx-prog">In Arbeit</span></td></tr>
+        <tr><td>4</td><td>Impressum unvollst&auml;ndig</td><td><span class="sev sev-critical">Kritisch</span></td><td>Keine Rechtsform, keine vertretungsberechtigte Person, USt-IdNr. &bdquo;wird erg&auml;nzt&ldquo; (&sect;5 DDG).</td><td>Pflichtangaben vervollst&auml;ndigen.</td><td><span class="fx fx-done">Behoben</span></td></tr>
         <tr><td>5</td><td>Keine strukturierten Daten</td><td><span class="sev sev-critical">Kritisch</span></td><td>0 JSON-LD-Bl&ouml;cke: kein LocalBusiness, Service, FAQ, Review/AggregateRating.</td><td>Schema-Paket implementieren (siehe Ma&szlig;nahmenplan).</td><td><span class="fx fx-open">Offen</span></td></tr>
         <tr><td>6</td><td>Barrierefreiheit (BFSG)</td><td><span class="sev sev-critical">Kritisch</span></td><td><code>user-scalable=no</code> verhindert Zoom (WCAG&nbsp;1.4.4); keine Barrierefreiheitserkl&auml;rung.</td><td>Zoom freigeben, Erkl&auml;rung erg&auml;nzen, BFSG-Pflicht pr&uuml;fen.</td><td><span class="fx fx-open">Offen</span></td></tr>
         <tr><td>7</td><td>Social-Preview defekt</td><td><span class="sev sev-high">Hoch</span></td><td><code>og:image</code> (<code>/og-cover.jpg</code>) liefert 404; <code>og:url</code> &amp; Twitter-Tags leer.</td><td>OG-Bild erstellen, absolute Pfade, Twitter-Tags erg&auml;nzen.</td><td><span class="fx fx-open">Offen</span></td></tr>
@@ -360,7 +358,7 @@
         <tr><td>20</td><td>Kein <code>llms.txt</code></td><td><span class="sev sev-medium">Mittel</span></td><td>Keine steuerbare Kontextdatei f&uuml;r AI-Suchmaschinen (404).</td><td><code>llms.txt</code> anlegen.</td><td><span class="fx fx-open">Offen</span></td></tr>
         <tr><td>21</td><td>HSTS ohne Preload</td><td><span class="sev sev-low">Niedrig</span></td><td>HSTS aktiv, aber ohne <code>preload</code>-Direktive.</td><td>Optional <code>preload</code> erg&auml;nzen.</td><td><span class="fx fx-open">Offen</span></td></tr>
         <tr><td>22</td><td>Sitemap-Pfad in robots.txt</td><td><span class="sev sev-low">Niedrig</span></td><td>Relativer Verweis <code>Sitemap: /sitemap.xml</code>.</td><td>Absolute URL angeben.</td><td><span class="fx fx-open">Offen</span></td></tr>
-        <tr><td>23</td><td>Datum Datenschutz</td><td><span class="sev sev-low">Niedrig</span></td><td>Stand 01.06.2026 &ndash; nach Tracking-Update aktualisieren.</td><td>Bei &Auml;nderung neu datieren.</td><td><span class="fx fx-prog">In Arbeit</span></td></tr>
+        <tr><td>23</td><td>Datum Datenschutz</td><td><span class="sev sev-low">Niedrig</span></td><td>Stand 01.06.2026 &ndash; nach Tracking-Update aktualisieren.</td><td>Bei &Auml;nderung neu datieren.</td><td><span class="fx fx-done">Behoben</span></td></tr>
         <tr><td>24</td><td>E-E-A-T-Signale</td><td><span class="sev sev-low">Niedrig</span></td><td>Keine Experten-/Team-Seiten, keine <code>sameAs</code>-Verkn&uuml;pfungen.</td><td>Profilseite + Social-Verkn&uuml;pfungen.</td><td><span class="fx fx-open">Offen</span></td></tr>
         <tr><td>25</td><td>Kein CMS / Redaktionssystem</td><td><span class="sev sev-medium">Mittel</span></td><td>Inhalte sind im Code hardcodiert (TanStack&nbsp;Start, React/Vite) &ndash; kein CMS, kein Editor, keine Admin-Oberfl&auml;che. Pflege nur per Code-&Auml;nderung &amp; Deploy durch eine:n Entwickler:in.</td><td>Bei h&auml;ufigen Inhalts&auml;nderungen Headless-CMS oder Editor-Schicht erw&auml;gen.</td><td><span class="fx fx-open">Offen</span></td></tr>
       </tbody>
@@ -384,10 +382,10 @@
     <h2>Empfehlungen zur Optimierung</h2>
 
     <div class="phase">
-      <h3>Kritisch &ndash; zuerst beheben (Rechtsrisiko)</h3>
-      <div class="rec-card crit"><span class="tag">Recht</span><strong>Consent-Management + Consent Mode V2</strong> &ndash; Cookie-Banner einbauen, GA4/GTM erst nach Einwilligung ausl&ouml;sen.</div>
-      <div class="rec-card crit"><span class="tag">Recht</span><strong>Datenschutzerkl&auml;rung aktualisieren</strong> &ndash; GA4 + GTM, Rechtsgrundlagen und Hoster offenlegen.</div>
-      <div class="rec-card crit"><span class="tag">Recht</span><strong>Google Fonts self-hosten</strong> &amp; <strong>Impressum vervollst&auml;ndigen</strong> (Rechtsform, vertretungsberechtigte Person, USt-IdNr. &ndash; &sect;5 DDG).</div>
+      <h3>Kritisch (Rechtsrisiko) &ndash; gr&ouml;&szlig;tenteils bereits erledigt</h3>
+      <div class="rec-card" style="background:#f3f9e9;border-color:#cfe39c;"><span class="fx fx-done">Behoben</span> <span class="tag">Recht</span><strong>Consent-Management + Consent Mode V2</strong> &ndash; Cookie-Banner wird angezeigt, GA4/GTM l&ouml;sen erst nach Einwilligung aus (live verifiziert, vom Kunden best&auml;tigt).</div>
+      <div class="rec-card warn"><span class="fx fx-prog">In Umsetzung</span> <span class="tag">Recht</span><strong>Datenschutzerkl&auml;rung aktualisieren</strong> (GA4 + GTM, Rechtsgrundlagen, Hoster) &amp; <strong>Impressum vervollst&auml;ndigen</strong> (&sect;5 DDG) &ndash; Texte geliefert, Entwickler baut sie ein.</div>
+      <div class="rec-card warn"><span class="fx fx-prog">In Arbeit</span> <span class="tag">Recht</span><strong>Google Fonts self-hosten</strong> &ndash; vom Entwickler zugesagt.</div>
       <div class="rec-card crit"><span class="tag">A11y</span><strong>Zoom freigeben</strong> (<code>user-scalable=no</code> entfernen) und <strong>Barrierefreiheitserkl&auml;rung</strong> erg&auml;nzen.</div>
     </div>
 
