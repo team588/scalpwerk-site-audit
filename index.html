@@ -208,18 +208,18 @@
     <div class="rec-card warn"><strong>Hinweis zum Pr&uuml;fumfang:</strong> Die Website wurde am <strong>11.06.2026</strong> neu ausgespielt (React/TanStack l&ouml;st die fr&uuml;here Tilda-Seite ab). Dieser Audit bewertet die <strong>neue Version</strong> (Live-Pr&uuml;fung 12.06.2026). GA4-Verlaufsdaten vor dem 11.06. stammen von der Vorg&auml;nger-Seite und sind f&uuml;r die neue Seite nicht repr&auml;sentativ. Zum Vergleich: Die Vorg&auml;nger-Seite war eine Google-Ads-getriebene Lead-Maschine (&Oslash; rund 1.250 Quiz-Abschl&uuml;sse + 600 WhatsApp-Klicks/Monat) &ndash; genau dieser Funnel darf durch den Relaunch nicht brechen.</div>
     <p class="lead">Die Website verkauft sich gut: klare Botschaft, emotionale Ansprache und eine starke Quiz-Funnel-Mechanik. Das technische Fundament (Sicherheit, Performance-Server, Pre-Rendering) ist &uuml;berdurchschnittlich. <strong>Den Score nach unten ziehen vor allem zwei Dinge:</strong></p>
     <ul>
-      <li><strong>Compliance (Note: durchgefallen):</strong> Das Tracking ist technisch aufw&auml;ndig aufgesetzt (GA4, Consent Mode V2 via CookieYes, Google Ads, Meta CAPI, server-side Stape) &ndash; aber <em>fehlkonfiguriert</em>: Der eigene CSP blockiert den CookieYes-Banner, sodass Besucher <em>keine</em> Cookie-Abfrage sehen, w&auml;hrend ein fest eingebundenes <code>gtag.js</code> GA4-Cookies bereits <em>ohne</em> Einwilligung setzt. Zudem verschweigt die Datenschutzerkl&auml;rung s&auml;mtliche Tools. Konkretes Abmahn-/Bu&szlig;geldrisiko (&sect;25 TTDSG / DSGVO).</li>
+      <li><strong>Compliance (zum Audit-Zeitpunkt 12.06.: durchgefallen &ndash; inzwischen teilweise behoben):</strong> Das Tracking ist technisch aufw&auml;ndig aufgesetzt (GA4, Consent Mode V2 via CookieYes, Google Ads, Meta CAPI, server-side Stape). Zum Audit war es jedoch <em>fehlkonfiguriert</em>: Der CSP blockierte den CookieYes-Banner, und ein fest eingebundenes <code>gtag.js</code> setzte GA4-Cookies ohne Einwilligung. <strong><span class="fx fx-done">Behoben 13.06</span> Der Banner wird jetzt angezeigt, der Consent Mode V2 greift live, das hardcodierte gtag ist entfernt &ndash; der &sect;25-TTDSG-Hauptpunkt ist damit ausger&auml;umt.</strong> F&uuml;r volle Rechtssicherheit noch offen: die <strong>Datenschutzerkl&auml;rung</strong> nennt die eingesetzten Tools weiterhin nicht, <strong>Google Fonts</strong> werden extern geladen (US-Transfer) und das <strong>Impressum</strong> ist unvollst&auml;ndig (&sect;5 DDG).</li>
       <li><strong>Strukturierte Daten (0&nbsp;von&nbsp;100):</strong> Es ist <em>kein einziges</em> JSON-LD-Schema vorhanden &ndash; kein LocalBusiness, kein Service, keine FAQ, keine Bewertungssterne. F&uuml;r ein lokales Studio in Regensburg ist das der g&uuml;nstigste ungenutzte Wachstumshebel.</li>
     </ul>
-    <p><strong>Was wir von Ihnen brauchen:</strong></p>
+    <p><strong>Was wir von Ihnen brauchen:</strong> <span style="font-size:.88em;color:var(--text-muted)">(Consent-Banner und die Tracking-Konfiguration sind bereits erledigt.)</span></p>
     <ul>
-      <li>Freigabe f&uuml;r die rechtlichen Sofortma&szlig;nahmen (Consent-Banner, Datenschutz-Update, Impressum-Daten: Rechtsform, verantwortliche Person, USt-IdNr.).</li>
-      <li>Zugang zu Google Tag Manager &amp; Google Analytics zur Korrektur der Tracking-Konfiguration.</li>
+      <li>Daten f&uuml;r das <strong>Impressum</strong> (&sect;5 DDG): Rechtsform, verantwortliche Person mit Vor- und Nachname, korrekte E-Mail, USt-Status (Kleinunternehmer oder USt-IdNr.).</li>
+      <li>Freigabe f&uuml;r das <strong>Datenschutz-Update</strong> (die eingesetzten Tools werden offengelegt &ndash; Text liefern wir).</li>
       <li>Best&auml;tigung der Unternehmensdaten (Rechtsform, Mitarbeiterzahl/Umsatz) zur Pr&uuml;fung der BFSG-Pflicht.</li>
     </ul>
 
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-value bad">FAIL</div><div class="kpi-label">Compliance 2026</div></div>
+      <div class="kpi-card"><div class="kpi-value warn">Teilw.</div><div class="kpi-label">Compliance 2026 &middot; Consent behoben</div></div>
       <div class="kpi-card"><div class="kpi-value bad">0</div><div class="kpi-label">JSON-LD Schemas</div></div>
       <div class="kpi-card"><div class="kpi-value good">288&nbsp;ms</div><div class="kpi-label">TTFB (Server)</div></div>
       <div class="kpi-card"><div class="kpi-value good">A&plus;</div><div class="kpi-label">Security-Header</div></div>
